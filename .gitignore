@@ -1,1 +1,9 @@
+docker/mysql/data/# MySQLデータ（絶対禁止）
 docker/mysql/data/
+*.dblwr
+#innodb*
+
+# 秘密鍵・環境変数
+.env*
+id_rsa*
+*.pem
