@@ -10,5 +10,4 @@ class Purchase extends Model
     use HasFactory;
 
     protected $fillable = ['payment_method'];
-    protected $guarded = ['id', 'user_id', 'item_id'];
 }

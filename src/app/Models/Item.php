@@ -10,5 +10,12 @@ class Item extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'brand_name', 'price', 'description', 'condition'];
-    protected $guarded = ['id', 'user_id', 'category_id', 'image_path', 'sold_flg'];
+
+    public function categories(){
+        return $this->belongsToMany(Category::class);
+    }
+
+    public function users(){
+        return $this->belongsToMany(User::class)->withPivot('payment_method', 'content');
+    }
 }

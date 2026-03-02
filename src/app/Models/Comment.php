@@ -10,5 +10,4 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = ['content'];
-    protected $guarded = ['id', 'user_id', 'item_id'];
 }
