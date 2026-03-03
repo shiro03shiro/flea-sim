@@ -49,7 +49,7 @@
     height: 50px;
     border: none;
     border-radius: 3px;
-    background: #000;
+    background: #ff5555;
     color: #fff;
     cursor: pointer;
 }
@@ -57,4 +57,5 @@
 .login__link {
     margin-top: 20px;
     text-align: center;
+    text-decoration: none;
 }
