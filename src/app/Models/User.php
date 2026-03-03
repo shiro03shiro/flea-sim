@@ -47,8 +47,13 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
-    public function items()
+    public function purchases()
     {
-        return $this->belongsToMany(Item::class);
+        return $this->belongsToMany(Item::class, 'purchases')->withPivot('payment_method');
+    }
+
+    public function comments()
+    {
+        return $this->belongsToMany(Item::class, 'comments')->withPivot('content');
     }
 }

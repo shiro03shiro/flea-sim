@@ -11,11 +11,15 @@ class Item extends Model
 
     protected $fillable = ['name', 'brand_name', 'price', 'description', 'condition'];
 
-    public function categories(){
-        return $this->belongsToMany(Category::class);
+    public function itemCategories(){
+        return $this->belongsToMany(Category::class, 'item_category');
     }
 
-    public function users(){
-        return $this->belongsToMany(User::class)->withPivot('payment_method', 'content');
+    public function purchases(){
+        return $this->belongsToMany(User::class, 'purchases')->withPivot('payment_method');
+    }
+
+    public function comments(){
+        return $this->belongsToMany(User::class, 'comments')->withPivot('content');
     }
 }
