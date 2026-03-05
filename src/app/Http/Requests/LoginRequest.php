@@ -11,7 +11,7 @@ class LoginRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,20 +21,20 @@ class LoginRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
+        \Log::info('LoginRequest rules called');
         return [
             'email' => 'required|email',
             'password' => 'required',
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
         'email.required' => 'メールアドレスを入力してください',
         'password.required' => 'パスワードを入力してください',
-        'password.required' => 'ログイン情報が登録されていません',
         ];
     }
 }
