@@ -16,6 +16,10 @@ use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\LoginRequest;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
+use App\Http\Responses\LoginResponse;
+use App\Http\Responses\RegisterResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -48,5 +52,8 @@ class FortifyServiceProvider extends ServiceProvider
             $email = (string) $request->email;
             return Limit::perMinute(10)->by($email . $request->ip());
         });
+
+        $this->app->singleton(LoginResponseContract::class, LoginResponse::class);
+        $this->app->singleton(RegisterResponseContract::class, RegisterResponse::class);
     }
 }
