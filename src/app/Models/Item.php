@@ -11,7 +11,7 @@ class Item extends Model
 
     protected $fillable = ['name', 'brand_name', 'price', 'description', 'condition'];
 
-    public function itemCategories(){
+    public function categories(){
         return $this->belongsToMany(Category::class, 'item_category');
     }
 
