@@ -10,21 +10,27 @@
         <h2>プロフィール設定</h2>
     </div>
     <form class="form" action="/mypage/profile" method="post">
+        @method('PATCH')
         @csrf
         <div class="form__group">
-                <div class="form__group-title">
-                    <span class="form__label--item">ユーザー名</span>
-                </div>
-                <div class="form__group-content">
-                    <div class="form__input--text">
-                    <input type="text" name="name" value="{{ old('name') }}" />
+            <div class="form__group-image">
+                <div class="form__group-content profile__image-area">
+                    <div class="profile__image-preview">
+                        <img id="preview"
+                            src="{{ old('avatar_path') ? asset('storage/' . old('avatar_path')) : asset('images/default-avatar.png') }}"
+                            alt="プロフィール画像" />
+                    </div>
+                    <div class="form__input--file">
+                        <input type="file" id="avatar_path" name="avatar_path" accept="image/*" onchange="previewImage(event)">
+                        <label for="avatar_path" class="file__button">画像を選択する</label>
                     </div>
                     <div class="form__error">
-                    @error('name')
-                    {{ $message }}
-                    @enderror
+                        @error('avatar_path')
+                            {{ $message }}
+                        @enderror
                     </div>
                 </div>
+            </div>
         </div>
         <div class="form__group">
             <div class="form__group-title">

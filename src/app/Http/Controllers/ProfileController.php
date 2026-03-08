@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+    public function show()
+    {
+        return view('profile.show');
+    }
+    public function edit()
+    {
+        return view('profile.edit');
+    }
     public function update(Request $request, User $user)
     {
         $user->update([
@@ -16,10 +24,6 @@ class ProfileController extends Controller
             'is_profile_completed' => true,  // ← ここで完了フラグON
         ]);
 
-        return redirect()->route('home')->with('success', 'プロフィール更新完了');
-    }
-    public function edit()
-    {
-        return view('profile.edit');
+        return redirect()->route('home');
     }
 }
