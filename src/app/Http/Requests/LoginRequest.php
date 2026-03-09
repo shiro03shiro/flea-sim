@@ -23,19 +23,9 @@ class LoginRequest extends FortifyLoginRequest
      */
     public function rules(): array
     {
-        \Log::info('LoginRequest rules called');
         return [
-            'email' => [
-                'required',
-                'email',
-                function ($attribute, $value, $fail) {
-                    $user = \App\Models\User::where('email', $value)->first();
-                    if (!$user) {
-                        $fail('ログイン情報が登録されていません。');
-                    }
-                }
-            ],
-            'password' => ['required'],
+            'email' => 'required|email',
+            'password' => 'required',
         ];
     }
 

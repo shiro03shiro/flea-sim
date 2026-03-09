@@ -6,6 +6,7 @@ use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
@@ -40,15 +41,14 @@ class FortifyServiceProvider extends ServiceProvider
         $this->app->bind(FortifyLoginRequest::class, LoginRequest::class);
 
         Fortify::authenticateUsing(function (Request $request) {
-            $user = \App\Models\User::where('email', $request->email)->first();
+            $user = User::where('email', $request->email)->first();
 
-            if (!$user) {
-                return null;
+            if ($user && Hash::check($request->password, $user->password)) {
+                return $user;
             }
-            if (!Hash::check($request->password, $user->password)) {
-                return null;
-            }
-            return $user;
+            throw ValidationException::withMessages([
+                'email' => 'ログイン情報が登録されていません。'
+            ]);
         });
     }
 }
