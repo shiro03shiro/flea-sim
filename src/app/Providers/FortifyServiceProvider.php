@@ -33,19 +33,14 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.login');
         });
 
+        $this->app->bind(\Laravel\Fortify\Http\Requests\FortifyLoginRequest::class, LoginRequest::class);
+
         Fortify::authenticateUsing(function (Request $request) {
             $loginRequest = LoginRequest::createFrom($request);
             $loginRequest->setContainer(app());
             $loginRequest->setRedirector(app('redirect'));
             $loginRequest->validateResolved();
-
-            $user = User::where('email', $request->email)->first();
-            if ($user && Hash::check($request->password, $user->password)) {
-                return $user;
-            }
-            throw ValidationException::withMessages([
-                'email' => 'ログイン情報が登録されていません。',
-            ]);
+            return $loginRequest->check();
         });
 
         RateLimiter::for('login', function (Request $request) {

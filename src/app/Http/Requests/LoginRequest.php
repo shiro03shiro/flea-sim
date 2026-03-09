@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class LoginRequest extends FormRequest
 {
@@ -36,5 +39,23 @@ class LoginRequest extends FormRequest
         'email.required' => 'メールアドレスを入力してください',
         'password.required' => 'パスワードを入力してください',
         ];
+    }
+
+    public function failedAuthorization()
+    {
+        throw ValidationException::withMessages([
+            'email' => 'ログイン情報が登録されていません。',
+        ]);
+    }
+
+    public function authenticate(): ?User
+    {
+        $user = User::where('email', $this->email)->first();
+
+        if (!$user || !Hash::check($this->password, $user->password)) {
+            $this->failedAuthorization();
+        }
+
+        return $user;
     }
 }
