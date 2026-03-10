@@ -24,7 +24,7 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'avatar_path' => 'required|image|mimes:png,jpeg|max:2048',
+            'avatar_path' => 'image|mimes:png,jpeg|max:2048',
             'name' => 'required|max:20',
             'postal_code' => 'required|max:8',
             'address' => 'required',
@@ -34,7 +34,6 @@ class ProfileRequest extends FormRequest
     public function messages()
     {
         return [
-        'avatar_path.required' => '画像を登録してください',
         'avatar_path.mimes' => '「.png」または「.jpeg」形式でアップロードしてください',
         'name.required' => 'お名前を入力してください',
         'postal_code.required' => '郵便番号を入力してください',

@@ -3,3 +3,8 @@
     padding: 30px 15px;
     max-width: 1230px;
 }
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
+}
