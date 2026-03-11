@@ -15,7 +15,9 @@ class ProfileController extends Controller
     }
     public function edit()
     {
-        return view('profile.edit');
+        $user = auth()->user();
+        $profile = $user->profile;
+        return view('profile.edit', compact('user', 'profile'));
     }
     public function update(ProfileRequest $request, User $user)
     {
