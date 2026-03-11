@@ -9,9 +9,22 @@ use App\Http\Requests\ProfileRequest;
 
 class ProfileController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
-        return view('profile.show');
+        $user = auth()->user();
+        $profile = $user->profile;
+
+        if ($request->get('page') === 'buy') {
+            $purchasedItems = $user->purchases()->with('item.category')->latest()->paginate(10);
+            $soldItems = collect();
+        } elseif ($request->get('page') === 'sell') {
+            $soldItems = $user->items()->with('category')->latest()->paginate(10);
+            $purchasedItems = collect();
+        } else {
+            $soldItems = $user->items()->with('category')->latest()->take(10)->get();
+            $purchasedItems = collect();
+        }
+        return view('profile.show', compact('user', 'profile', 'soldItems', 'purchasedItems'));
     }
     public function edit()
     {
