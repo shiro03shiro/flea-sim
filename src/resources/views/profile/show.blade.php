@@ -21,7 +21,7 @@
                         <img src="{{ asset('images/default-item.png') }}" alt="画像なし" />
                     @endif
                     <p>{{ $item->name }}</p>
-                    <span class="category">{{ $item->category->name ?? '' }}</span>
+                    <span class="category">{{ $item->categories->first()?->name ?? '' }}</span>
                     <span class="price">{{ number_format($item->sold_price) }}円</span>
                 </div>
             @empty
@@ -40,7 +40,7 @@
                         <img src="{{ asset('images/default-item.png') }}" alt="画像なし" />
                     @endif
                     <p>{{ $purchase->item->name }}</p>
-                    <span class="category">{{ $purchase->item->category->name ?? '' }}</span>
+                    <span class="category">{{ $purchase->item->categories->first()?->name ?? '' }}</span>
                 </div>
             @empty
                 <p>購入履歴がありません</p>

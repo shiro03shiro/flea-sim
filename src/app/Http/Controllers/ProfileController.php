@@ -15,13 +15,13 @@ class ProfileController extends Controller
         $profile = $user->profile;
 
         if ($request->get('page') === 'buy') {
-            $purchasedItems = $user->purchases()->with('item.category')->latest()->paginate(10);
+            $purchasedItems = $user->purchases()->with('item.categories')->latest()->paginate(10);
             $soldItems = collect();
         } elseif ($request->get('page') === 'sell') {
-            $soldItems = $user->items()->with('category')->latest()->paginate(10);
+            $soldItems = $user->items()->with('categories')->latest()->paginate(10);
             $purchasedItems = collect();
         } else {
-            $soldItems = $user->items()->with('category')->latest()->take(10)->get();
+            $soldItems = $user->items()->with('categories')->latest()->take(10)->get();
             $purchasedItems = collect();
         }
         return view('profile.show', compact('user', 'profile', 'soldItems', 'purchasedItems'));
