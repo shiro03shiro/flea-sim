@@ -60,7 +60,7 @@
 
                     @foreach($categories as $category)
                     <label class="category__button">
-                        <input type="checkbox" name="category_id[]" value="{{ $category->id }}">
+                        <input type="checkbox" name="category_id[]" value="{{ $category->id }}"{{ in_array($category->id, old('category_id', [])) ? 'checked' : '' }}>
                         <span>{{ $category->name }}</span>
                     </label>
                     @endforeach
@@ -89,10 +89,10 @@
                 <div class="form__input--select">
                     <select name="condition">
                         <option value="">選択してください</option>
-                        <option value="1">良好</option>
-                        <option value="2">目立った傷や汚れなし</option>
-                        <option value="3">やや傷や汚れあり</option>
-                        <option value="4">状態が悪い</option>
+                        <option value="1" {{ old('condition') == 1 ? 'selected' : '' }}>良好</option>
+                        <option value="2" {{ old('condition') == 2 ? 'selected' : '' }}>目立った傷や汚れなし</option>
+                        <option value="3" {{ old('condition') == 3 ? 'selected' : '' }}>やや傷や汚れあり</option>
+                        <option value="4" {{ old('condition') == 4 ? 'selected' : '' }}>状態が悪い</option>
                     </select>
                 </div>
 
