@@ -9,38 +9,86 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('items.index');
+        $tab = $request->query('tab');
+
+        if ($tab === 'mylist' && auth()->check()) {
+            $items = Item::whereHas('likes', function ($query) {
+                $query->where('user_id', auth()->id());
+            })->latest()->get();
+        } else {
+            $items = Item::latest()->get();
+        }
+
+        return view('items.index', compact('items', 'tab'));
     }
 
-    public function show()
+    public function show($item_id)
     {
-        return view('items.show');
+        $item = Item::with(['comments.user','likes'])->findOrFail($item_id);
+
+        $liked = false;
+
+        if(auth()->check()){
+            $liked = $item->likes()->where('user_id',auth()->id())->exists();
+        }
+
+        return view('items.show', compact('item','liked'));
     }
 
-    public function comment()
+    public function comment(Request $request,$item_id)
     {
-        return view('items.show');
+        Comment::create([
+            'user_id'=>auth()->id(),
+            'item_id'=>$item_id,
+            'content'=>$request->content
+        ]);
+
+        return back();
     }
 
-    public function like()
+    public function like($item_id)
     {
-        return view('items.show');
+        Like::create([
+            'user_id' => auth()->id(),
+            'item_id' => $item_id
+        ]);
+
+        return back();
     }
 
-    public function unlike()
+    public function unlike($item_id)
     {
-        return view('items.show');
+        Like::where('user_id',auth()->id())
+            ->where('item_id',$item_id)
+            ->delete();
+
+        return back();
     }
 
     public function create()
     {
-        return view('items.create');
+        $categories = Category::all();
+
+        return view('items.create', compact('categories'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        return redirect()->route('home')->with('success', '出品完了');
+        $path = $request->file('image')->store('items','public');
+
+        Item::create([
+            'user_id'=>auth()->id(),
+            'name'=>$request->name,
+            'brand_name'=>$request->brand_name,
+            'price'=>$request->price,
+            'description'=>$request->description,
+            'condition'=>$request->condition,
+            'image_path'=>$path,
+            'sold_flg'=>false
+        ]);
+
+        return redirect('/');
     }
 }

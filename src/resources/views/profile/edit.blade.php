@@ -9,7 +9,7 @@
     <div class="profile-form__heading">
         <h2>プロフィール設定</h2>
     </div>
-    <form class="form" action="/mypage/profile" method="post" enctype="multipart/form-data">
+    <form class="form" action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
         <div class="form__group">
@@ -45,7 +45,7 @@
                 @enderror
                 </div>
             </div>
-            </div>
+        </div>
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">郵便番号</span>
