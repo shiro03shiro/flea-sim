@@ -23,6 +23,10 @@
                     @else
                         <img src="{{ asset('images/default-item.png') }}" alt="画像なし" class="item-card__image--default">
                     @endif
+                    @if($item->sold_flg)
+                        <div class="sold-badge">SOLD</div>
+                        <p>SOLD</p>
+                    @endif
                     <div class="item-card__body">
                         <p class="item-card__name">{{ $item->name }}</p>
                     </div>
