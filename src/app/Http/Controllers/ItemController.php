@@ -19,7 +19,8 @@ class ItemController extends Controller
                 $query->where('user_id', auth()->id());
             })->latest()->get();
         } else {
-            $items = Item::latest()->get();
+            $query = auth()->check() ? Item::where('user_id', '!=', auth()->id()) : Item::query();
+            $items = $query->latest()->get();
         }
 
         return view('items.index', compact('items', 'tab'));
