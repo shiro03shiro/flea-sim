@@ -60,7 +60,7 @@
 
                     @foreach($categories as $category)
                     <label class="category__button">
-                        <input type="radio" name="category_id" value="{{ $category->id }}">
+                        <input type="checkbox" name="category_id" value="{{ $category->id }}">
                         <span>{{ $category->name }}</span>
                     </label>
                     @endforeach
@@ -89,11 +89,10 @@
                 <div class="form__input--select">
                     <select name="condition">
                         <option value="">選択してください</option>
-                        <option value="1">新品</option>
-                        <option value="2">未使用に近い</option>
-                        <option value="3">目立った傷や汚れなし</option>
-                        <option value="4">やや傷や汚れあり</option>
-                        <option value="5">傷や汚れあり</option>
+                        <option value="1">良好</option>
+                        <option value="2">目立った傷や汚れなし</option>
+                        <option value="3">やや傷や汚れあり</option>
+                        <option value="4">状態が悪い</option>
                     </select>
                 </div>
 
@@ -178,7 +177,7 @@
 
                 <div class="form__input--price">
                     <span class="price__mark">¥</span>
-                    <input type="number" name="price" value="{{ old('price') }}">
+                    <input type="text" name="price" value="{{ old('price') }}">
                 </div>
 
                 <div class="form__error">
