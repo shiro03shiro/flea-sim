@@ -9,7 +9,7 @@ class Item extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'brand_name', 'price', 'description', 'condition'];
+    protected $fillable = ['user_id','image_path','name', 'brand_name', 'price', 'description', 'condition','sold_flg'];
 
     public function categories(){
         return $this->belongsToMany(Category::class, 'item_category');

@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\Category;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Http\Requests\ExhibitionRequest;
 
 class ItemController extends Controller
 {
@@ -24,17 +25,11 @@ class ItemController extends Controller
         return view('items.index', compact('items', 'tab'));
     }
 
-    public function show($item_id)
+    public function show($id)
     {
-        $item = Item::with(['comments.user','likes'])->findOrFail($item_id);
+        $item = \App\Models\Item::findOrFail($id);
 
-        $liked = false;
-
-        if(auth()->check()){
-            $liked = $item->likes()->where('user_id',auth()->id())->exists();
-        }
-
-        return view('items.show', compact('item','liked'));
+        return view('items.show', compact('item'));
     }
 
     public function comment(Request $request,$item_id)
@@ -48,24 +43,9 @@ class ItemController extends Controller
         return back();
     }
 
-    public function like($item_id)
-    {
-        Like::create([
-            'user_id' => auth()->id(),
-            'item_id' => $item_id
-        ]);
 
-        return back();
-    }
 
-    public function unlike($item_id)
-    {
-        Like::where('user_id',auth()->id())
-            ->where('item_id',$item_id)
-            ->delete();
 
-        return back();
-    }
 
     public function create()
     {
@@ -74,20 +54,25 @@ class ItemController extends Controller
         return view('items.create', compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(ExhibitionRequest $request)
     {
-        $path = $request->file('image')->store('items','public');
+        $path = null;
+        if ($request->hasFile('image_path') && $request->file('image_path')->isValid()) {
+            $path = $request->file('image_path')->store('items', 'public');
+        }
 
-        Item::create([
+        $item = Item::create([
             'user_id'=>auth()->id(),
+            'image_path'=>$path,
             'name'=>$request->name,
             'brand_name'=>$request->brand_name,
             'price'=>$request->price,
             'description'=>$request->description,
             'condition'=>$request->condition,
-            'image_path'=>$path,
             'sold_flg'=>false
         ]);
+
+        $item->categories()->attach($request->category_id);
 
         return redirect('/');
     }

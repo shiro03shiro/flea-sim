@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/item.css') }}">
+<link rel="stylesheet" href="{{ asset('css/items.css') }}">
 @endsection
 
 @section('content')
@@ -60,7 +60,7 @@
 
                     @foreach($categories as $category)
                     <label class="category__button">
-                        <input type="checkbox" name="category_id" value="{{ $category->id }}">
+                        <input type="checkbox" name="category_id[]" value="{{ $category->id }}">
                         <span>{{ $category->name }}</span>
                     </label>
                     @endforeach
