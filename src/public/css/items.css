@@ -4,6 +4,12 @@
     max-width: 1230px;
 }
 
+.item-detail {
+    margin: 0 auto;
+    padding: 30px 15px;
+    max-width: 1230px;
+}
+
 .form__error {
     height: 20px;
     color: #ff0000;
