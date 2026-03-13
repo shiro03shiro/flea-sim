@@ -18,15 +18,16 @@
         @forelse ($items as $item)
             <div class="item-card">
                 <a href="{{ route('items.show', $item->id) }}" class="item-card__link">
-                    @if($item->image_path)
-                        <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}" class="item-card__image">
-                    @else
-                        <img src="{{ asset('images/default-item.png') }}" alt="画像なし" class="item-card__image--default">
-                    @endif
-                    @if($item->sold_flg)
-                        <div class="sold-badge">SOLD</div>
-                        <p>SOLD</p>
-                    @endif
+                    <div class="item-card__image-wrapper">
+                        @if($item->image_path)
+                            <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}" class="item-card__image">
+                        @else
+                            <img src="{{ asset('images/default-item.png') }}" alt="画像なし" class="item-card__image">
+                        @endif
+                        @if($item->sold_flg)
+                            <span class="sold-badge">SOLD</span>
+                        @endif
+                    </div>
                     <div class="item-card__body">
                         <p class="item-card__name">{{ $item->name }}</p>
                     </div>
