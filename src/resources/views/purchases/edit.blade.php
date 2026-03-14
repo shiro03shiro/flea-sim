@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+
 <p>送付先住所変更画面</p>
 
 
