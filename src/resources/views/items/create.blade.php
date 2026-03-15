@@ -105,6 +105,10 @@
             </div>
         </div>
 
+        {{-- 商品名と説明 --}}
+        <div class="form__section">
+            <h3 class="form__section-title">商品名と説明</h3>
+        </div>
 
         {{-- 商品名 --}}
         <div class="form__group">

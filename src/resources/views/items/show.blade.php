@@ -15,12 +15,16 @@
         @endif
     </div>
 
+    <form class="form" action="/" method="post">
+        @csrf
+
+
     <div class="item-detail__content">
         {{-- 商品情報ヘッダー --}}
         <div class="item-detail__header">
             <h1 class="item-detail__name">{{ $item->name }}</h1>
-            <p class="item-detail__brand">{{ $item->brand_name ?? 'ブランド名' }}</p>
-            <p class="item-detail__price">¥{{ number_format($item->price) }}</p>
+            <p class="item-detail__brand">{{ $item->brand_name ?? 'ブランド名なし' }}</p>
+            <p class="item-detail__price">¥{{ number_format($item->price) }}(税込)</p>
         </div>
 
         {{-- 購入ボタン --}}
@@ -34,8 +38,9 @@
             <div class="item-detail__text">{{ $item->description }}</div>
         </div>
 
-        {{-- 商品メタ情報 --}}
+        {{-- 商品情報 --}}
         <div class="item-detail__meta">
+            <h3 class="item-detail__section-title">商品の情報</h3>
             <dl class="item-detail__meta-list">
                 <div class="item-detail__meta-item">
                     <dt>カテゴリー</dt>
@@ -49,4 +54,15 @@
                     </dd>
                 </div>
             </dl>
-        </di
+            <h3 class="item-detail__section-title">コメント(count)</h3>
+            <div>商品へのコメント</div>
+            <input type="text">
+            <div class="form__button">
+                <button class="form__button-submit" type="submit">
+                    コメントを送信する
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
