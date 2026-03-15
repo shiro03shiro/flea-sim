@@ -76,4 +76,23 @@
     </div>
 
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const select = document.getElementById('payment_method');
+        const display = document.getElementById('selected-payment');
+
+        if (!select || !display) return;
+
+        const updateDisplay = () => {
+            const value = select.value;
+            display.textContent = value ? value : '—';
+        };
+
+        updateDisplay();
+
+        select.addEventListener('change', updateDisplay);
+    });
+</script>
 @endsection
+
