@@ -39,5 +39,27 @@
             </p>
         @endforelse
     </div>
+    @if($items->lastPage() > 1)
+    <div class="pagination">
+        @if(!$items->onFirstPage())
+            <a href="{{ $items->previousPageUrl() }}" class="pagination-link">« 前</a>
+        @endif
+
+        @foreach($items->getUrlRange(1, $items->lastPage()) as $page => $url)
+            @if($page == $items->currentPage())
+                <span class="pagination-current">{{ $page }}</span>
+            @else
+                <a href="{{ $url }}" class="pagination-link">{{ $page }}</a>
+            @endif
+        @endforeach
+
+        @if($items->hasMorePages())
+            <a href="{{ $items->nextPageUrl() }}" class="pagination-link">次 »</a>
+        @endif
+    </div>
+    <div class="pagination-info">
+        {{ $items->currentPage() }} / {{ $items->lastPage() }}ページ
+    </div>
+    @endif
 </div>
 @endsection
