@@ -7,10 +7,11 @@
 @section('content')
 <div class="profile-show">
     <div class="profile-header">
-        <img src="{{ $profile?->avatar_path
-            ? asset('storage/' . $profile?->avatar_path)
-            : asset('images/default-avatar.png') }}"
-            alt="プロフィール画像" class="profile-avatar" />
+        @if(@isset($profile) && !@empty($profile->avatar_path))
+            <img src="{{ asset('storage/' . $profile->avatar_path) }}" alt="プロフィール画像" class="profile-avatar" />
+        @else
+            <img src="{{ asset('images/default-avatar.png') }}" alt="プロフィール画像" class="profile-avatar" />
+        @endif
         <h2>{{ $user->name }}</h2>
         <a href="{{ route('profile.edit') }}" class="edit-btn">プロフィール編集</a>
     </div>

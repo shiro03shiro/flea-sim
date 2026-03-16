@@ -16,8 +16,11 @@
             <div class="form__group-image">
                 <div class="form__group-content profile__image-area">
                     <div class="profile__image-preview">
-                        <img id="preview"
-                            src="{{ $profile?->avatar_path ? asset('storage/' . $profile?->avatar_path) : asset('images/default-avatar.png') }}" alt="プロフィール画像" class="profile-avatar"/>
+                        @if(@isset($profile) && !@empty($profile->avatar_path))
+                            <img src="{{ asset('storage/' . $profile->avatar_path) }}" alt="プロフィール画像" class="profile-avatar"/>
+                        @else
+                            <img src="{{ asset('images/default-avatar.png') }}" alt="プロフィール画像" class="profile-avatar"/>
+                        @endif
                     </div>
                     <div class="form__input--file">
                         <input type="file" id="avatar_path" name="avatar_path" accept="image/*" onchange="previewImage(event)">
