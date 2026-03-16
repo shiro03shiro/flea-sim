@@ -1,20 +1,134 @@
-.profile-form__content {
+.profile-form__content,
+.profile-show {
+    max-width: 1230px;
     margin: 0 auto;
     padding: 30px 15px;
-    max-width: 1230px;
 }
+
 .form__error {
     height: 20px;
     color: #ff0000;
     text-align: left;
 }
+.form__group {
+    margin-bottom: 24px;
+}
+
+.form__group-title {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.form__label--item {
+    display: block;
+    font-size: 16px;
+}
+
+.form__group-content {
+    position: relative;
+}
+
+.form__input--text input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.2s;
+}
+
+.form__input--text input:focus {
+    outline: none;
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.form__button {
+    text-align: center;
+    margin-top: 32px;
+}
+
+.form__button-submit {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.form__button-submit:hover {
+    background: #dc2626;
+}
+
+.profile-header {
+    text-align: center;
+    padding: 24px 0;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 24px;
+}
 
 .profile-avatar {
-    margin:20px;
+    margin: 20px;
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.edit-btn {
+    padding: 8px 16px;
+    background: #ef4444;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s;
+    display: inline-block;
+}
+
+.edit-btn:hover {
+    background: #dc2626;
+    color: white;
+}
+
+.profile-tabs {
+    display: flex;
+    gap: 12px;
+    margin: 24px 0;
+    justify-content: center;
+}
+
+.tab-btn {
+    padding: 12px 24px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #6b7280;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+    background: #ef4444;
+    color: white;
+    border-color: #ef4444;
+}
+
+.items-section {
+    margin-top: 24px;
+}
+
+.items-section h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #1f2937;
 }
 
 .items-grid {
@@ -29,6 +143,7 @@
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.2s;
+    background: white;
 }
 
 .item-card:hover {
@@ -58,6 +173,8 @@
 .item-card__name {
     font-weight: 600;
     margin: 0 0 4px 0;
+    color: #1f2937;
+    font-size: 16px;
 }
 
 .sold-badge {
@@ -78,4 +195,49 @@
     text-align: center;
     padding: 40px;
     color: #6b7280;
+    font-size: 16px;
+}
+
+.profile__image-area {
+    text-align: center;
+}
+
+.profile__image-preview {
+    margin-bottom: 16px;
+}
+
+.form__input--file {
+    margin-bottom: 12px;
+}
+
+.file__button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #f3f4f6;
+    color: #374151;
+    border: 2px dashed #d1d5db;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.file__button:hover {
+    background: #e5e7eb;
+    border-color: #9ca3af;
+}
+
+.profile-form__heading {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.profile-form__heading h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+}
+
+.form__group-image {
+    text-align: center;
 }

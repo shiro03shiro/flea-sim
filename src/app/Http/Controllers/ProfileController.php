@@ -13,18 +13,16 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
         $profile = $user->profile;
+        $page = $request->get('page', 'sell');
 
-        if ($request->get('page') === 'buy') {
-            $purchasedItems = $user->purchases()->with('item.categories')->latest()->paginate(10);
+        if ($page === 'buy') {
+            $purchasedItems = $user->purchases()->with('item.categories')->latest()->get();
             $soldItems = collect();
-        } elseif ($request->get('page') === 'sell') {
-            $soldItems = $user->items()->with('categories')->latest()->paginate(10);
-            $purchasedItems = collect();
         } else {
-            $soldItems = $user->items()->with('categories')->latest()->take(10)->get();
+            $soldItems = $user->items()->with('categories')->latest()->get();
             $purchasedItems = collect();
         }
-        return view('profile.show', compact('user', 'profile', 'soldItems', 'purchasedItems'));
+        return view('profile.show', compact('user', 'profile', 'soldItems', 'purchasedItems', 'page'));
     }
     public function edit()
     {

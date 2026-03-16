@@ -7,7 +7,7 @@
 @section('content')
 <div class="profile-show">
     <div class="profile-header">
-        @if(@isset($profile) && !@empty($profile->avatar_path))
+        @if(isset($profile) && !empty($profile->avatar_path))
             <img src="{{ asset('storage/' . $profile->avatar_path) }}" alt="プロフィール画像" class="profile-avatar" />
         @else
             <img src="{{ asset('images/default-avatar.png') }}" alt="プロフィール画像" class="profile-avatar" />
@@ -15,57 +15,64 @@
         <h2>{{ $user->name }}</h2>
         <a href="{{ route('profile.edit') }}" class="edit-btn">プロフィール編集</a>
     </div>
-    <div class="items-section">
-        <h3>出品した商品</h3>
-        <div class="items-grid">
-            @forelse($soldItems as $item)
-                <div class="item-card">
-                    <a href="{{ route('items.show', $item->id) }}" class="item-card__link">
-                        <div class="item-card__image-wrapper">
-                            @if($item->image_path)
-                                <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}" class="item-card__image">
-                            @else
-                                <img src="{{ asset('images/default-item.png') }}" alt="画像なし" class="item-card__image">
-                            @endif
-                            @if($item->sold_flg)
-                                <span class="sold-badge">SOLD</span>
-                            @endif
-                        </div>
-                        <div class="item-card__body">
-                            <p class="item-card__name">{{ $item->name }}</p>
-                        </div>
-                    </a>
-                </div>
-            @empty
-                <p class="empty-state">出品商品がありません</p>
-            @endforelse
-        </div>
+    <div class="profile-tabs">
+        <a href="{{ route('profile.show', ['page' => 'sell']) }}" class="tab-btn {{ $page !== 'buy' ? 'active' : '' }}">出品した商品</a>
+        <a href="{{ route('profile.show', ['page' => 'buy']) }}" class="tab-btn {{ $page === 'buy' ? 'active' : '' }}">購入した商品</a>
     </div>
-    <div class="items-section">
-        <h3>購入した商品</h3>
-        <div class="items-grid">
-            @forelse($purchasedItems as $purchase)
-                <div class="item-card">
-                    <a href="{{ route('items.show', $purchase->item->id) }}" class="item-card__link">
-                        <div class="item-card__image-wrapper">
-                            @if($purchase->item->image_path)
-                                <img src="{{ asset('storage/' . $purchase->item->image_path) }}" alt="{{ $purchase->item->name }}" class="item-card__image">
-                            @else
-                                <img src="{{ asset('images/default-item.png') }}" alt="画像なし" class="item-card__image">
-                            @endif
-                            @if($purchase->item->sold_flg)
-                                <span class="sold-badge">SOLD</span>
-                            @endif
-                        </div>
-                        <div class="item-card__body">
-                            <p class="item-card__name">{{ $purchase->item->name }}</p>
-                        </div>
-                    </a>
-                </div>
-            @empty
-                <p class="empty-state">購入履歴がありません</p>
-            @endforelse
+    @if($page === 'buy' && isset($purchasedItems))
+        <div class="items-section">
+            <h3>購入した商品</h3>
+            <div class="items-grid">
+                @forelse($purchasedItems as $purchase)
+                    <div class="item-card">
+                        <a href="{{ route('items.show', $purchase->item->id) }}" class="item-card__link">
+                            <div class="item-card__image-wrapper">
+                                @if($purchase->item->image_path)
+                                    <img src="{{ asset('storage/' . $purchase->item->image_path) }}" alt="{{ $purchase->item->name }}" class="item-card__image">
+                                @else
+                                    <img src="{{ asset('images/default-item.png') }}" alt="画像なし" class="item-card__image">
+                                @endif
+                                @if($purchase->item->sold_flg)
+                                    <span class="sold-badge">SOLD</span>
+                                @endif
+                            </div>
+                            <div class="item-card__body">
+                                <p class="item-card__name">{{ $purchase->item->name }}</p>
+                            </div>
+                        </a>
+                    </div>
+                @empty
+                    <p class="empty-state">購入履歴がありません</p>
+                @endforelse
+            </div>
         </div>
-    </div>
+    @else
+        <div class="items-section">
+            <h3>出品した商品</h3>
+            <div class="items-grid">
+                @forelse($soldItems as $item)
+                    <div class="item-card">
+                        <a href="{{ route('items.show', $item->id) }}" class="item-card__link">
+                            <div class="item-card__image-wrapper">
+                                @if($item->image_path)
+                                    <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}" class="item-card__image">
+                                @else
+                                    <img src="{{ asset('images/default-item.png') }}" alt="画像なし" class="item-card__image">
+                                @endif
+                                @if($item->sold_flg)
+                                    <span class="sold-badge">SOLD</span>
+                                @endif
+                            </div>
+                            <div class="item-card__body">
+                                <p class="item-card__name">{{ $item->name }}</p>
+                            </div>
+                        </a>
+                    </div>
+                @empty
+                    <p class="empty-state">出品商品がありません</p>
+                @endforelse
+            </div>
+        </div>
+    @endif
 </div>
 @endsection
