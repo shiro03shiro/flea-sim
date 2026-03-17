@@ -47,10 +47,11 @@
                 <h3 class="form__group-title">配送先</h3>
                 <div class="form__group-content">
                     <div class="purchase__shipping-address">
-                        <p>〒{{ auth()->user()->postal_code ?? '' }}</p>
-                        <p>{{ auth()->user()->address ?? '' }}</p>
+                        @php $profile = auth()->user()->profile; @endphp
+                        <p>〒{{ $profile->postal_code ?? '' }}</p>
+                        <p>{{ $profile->address ?? '' }} {{ $profile->building ?? '' }}</p>
                     </div>
-                    <a href="{{ route('purchases.edit', ['item_id' => $item->id]) }}" class="btn btn--link">配送先を変更する</a>
+                    <a href="{{ route('purchases.edit', $item->id) }}?redirect_to={{ urlencode(route('purchases.create', $item->id)) }}" class="btn btn--link">配送先を変更する</a>
                 </div>
             </div>
         </form>

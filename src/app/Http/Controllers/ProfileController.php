@@ -53,6 +53,7 @@ class ProfileController extends Controller
         }
 
         $user->profile()->updateOrCreate(['user_id' => $user->id], $profileData);
-        return redirect()->route('profile.show')->with('success', 'プロフィールが更新されました');
+        $redirectTo = $request->input('redirect_to') ?: route('profile.show');
+        return redirect()->to($redirectTo)->with('success', 'プロフィールが更新されました');
     }
 }

@@ -46,12 +46,22 @@ class PurchaseController extends Controller
     public function edit($item_id)
     {
         $item = Item::findOrFail($item_id);
-        return view('purchases.edit', compact('item'));
+        $profile = auth()->user()->profile;
+        return view('purchases.edit', compact('item', 'profile'));
     }
 
-    public function update()
+    public function update(Request $request, $item_id)
     {
-        return redirect()->route('purchases.create');
-    }
+        $validated = $request->validate([
+            'postal_code' => 'required|string|max:8',
+            'address' => 'required|string|max:255',
+            'building' => 'nullable|string|max:255',
+        ]);
 
+        $user = auth()->user();
+        $user->profile()->updateOrCreate(['user_id' => $user->id], $validated);
+
+        $redirectTo = $request->input('redirect_to') ?: route('purchases.create', $item_id);
+        return redirect($redirectTo)->with('success', '住所を更新しました');
+    }
 }
