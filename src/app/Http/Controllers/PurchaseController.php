@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Purchase;
+use App\Http\Requests\AddressRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,16 +51,12 @@ class PurchaseController extends Controller
         return view('purchases.edit', compact('item', 'profile'));
     }
 
-    public function update(Request $request, $item_id)
+    public function update(AddressRequest $request, $item_id)
     {
-        $validated = $request->validate([
-            'postal_code' => 'required|string|max:8',
-            'address' => 'required|string|max:255',
-            'building' => 'nullable|string|max:255',
-        ]);
+        $profileData = $request->validated();
 
         $user = auth()->user();
-        $user->profile()->updateOrCreate(['user_id' => $user->id], $validated);
+        $user->profile()->updateOrCreate(['user_id' => $user->id], $profileData);
 
         $redirectTo = $request->input('redirect_to') ?: route('purchases.create', $item_id);
         return redirect($redirectTo)->with('success', '住所を更新しました');
