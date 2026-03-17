@@ -29,7 +29,15 @@
 
         {{-- 購入ボタン --}}
         <div class="item-detail__action">
-            <a href="{{ route('purchases.create', $item->id) }}" class="btn btn--danger btn--large">購入手続きへ</a>
+            @if($item->sold_flg)
+                <span class="btn btn--disabled btn--large">売り切れました</span>
+            @elseif($item->user_id === auth()->id())
+                <span class="btn btn--disabled btn--large">あなたの出品商品です</span>
+            @else
+                <a href="{{ route('purchases.create', $item->id) }}" class="btn btn--danger btn--large">
+                    購入手続きへ
+                </a>
+            @endif
         </div>
 
         {{-- 商品説明 --}}

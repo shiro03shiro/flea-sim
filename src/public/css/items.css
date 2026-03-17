@@ -15,3 +15,11 @@
     color: #ff0000;
     text-align: left;
 }
+
+.btn--disabled {
+    pointer-events: none;
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: #ccc !important;
+    color: #666 !important;
+}
