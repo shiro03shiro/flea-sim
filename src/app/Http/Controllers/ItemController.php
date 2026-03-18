@@ -17,10 +17,10 @@ class ItemController extends Controller
         if ($tab === 'mylist' && auth()->check()) {
             $items = Item::whereHas('likes', function ($query) {
                 $query->where('user_id', auth()->id());
-            })->latest()->paginate(4);
+            })->latest()->paginate(30);
         } else {
             $query = auth()->check() ? Item::where('user_id', '!=', auth()->id()) : Item::query();
-            $items = $query->latest()->paginate(4);
+            $items = $query->latest()->paginate(30);
         }
 
         return view('items.index', compact('items', 'tab'));
