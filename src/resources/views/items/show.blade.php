@@ -24,22 +24,31 @@
         </div>
 
         <div class="item-detail__like">
-            @if(auth()->check() && $item->isLikedByAuthUser())
-                <form action="{{ route('items.unlike', $item->id) }}" method="POST" style="display: inline;">
-                    @csrf @method('DELETE')
-                    <button type="submit" class="like-btn" title="いいね解除">
-                        <img src="{{ asset('images/ハートロゴ_ピンク.png') }}" width="30" height="30">
-                    </button>
-                </form>
+            @if($item->user_id !== auth()->id())
+                @if(auth()->check() && $item->isLikedByAuthUser())
+                    <form action="{{ route('items.unlike', $item->id) }}" method="POST" style="display: inline;">
+                        @csrf @method('DELETE')
+                        <button type="submit" class="like-btn">
+                            <img src="{{ asset('images/ハートロゴ_ピンク.png') }}" width="30" height="30">
+                        </button>
+                    </form>
+                @else
+                    <form action="{{ route('items.like', $item->id) }}" method="POST" style="display: inline;">
+                        @csrf
+                        <button type="submit" class="like-btn">
+                            <img src="{{ asset('images/ハートロゴ_デフォルト.png') }}" width="30" height="30">
+                        </button>
+                    </form>
+                @endif
+                <span class="like-count">{{ $item->likes->count() }}</span>
             @else
-                <form action="{{ route('items.like', $item->id) }}" method="POST" style="display: inline;">
-                    @csrf
-                    <button type="submit" class="like-btn" title="いいね登録（ログイン必要）">
-                        <img src="{{ asset('images/ハートロゴ_デフォルト.png') }}" width="30" height="30">
-                    </button>
-                </form>
+                <div class="like-owner">
+                    <img src="{{ asset('images/ハートロゴ_デフォルト.png') }}" 
+                        class="like-icon--disabled" width="30" height="30">
+                    <span class="owner-message">あなたの出品商品です</span>
+                    <span class="like-count">{{ $item->likes->count() }}</span>
+                </div>
             @endif
-            <span class="like-count">{{ $item->likes_count }}</span>
         </div>
 
         {{-- 購入ボタン --}}
