@@ -27,18 +27,19 @@
             @if(auth()->check() && $item->isLikedByAuthUser())
                 <form action="{{ route('items.unlike', $item->id) }}" method="POST" style="display: inline;">
                     @csrf @method('DELETE')
-                    <button type="submit" class="like-btn" title="いいねを解除">
+                    <button type="submit" class="like-btn" title="いいね解除">
                         <img src="{{ asset('images/ハートロゴ_ピンク.png') }}" width="30" height="30">
                     </button>
                 </form>
             @else
                 <form action="{{ route('items.like', $item->id) }}" method="POST" style="display: inline;">
                     @csrf
-                    <button type="submit" class="like-btn" title="いいねを押す（ログイン必要）">
+                    <button type="submit" class="like-btn" title="いいね登録（ログイン必要）">
                         <img src="{{ asset('images/ハートロゴ_デフォルト.png') }}" width="30" height="30">
                     </button>
                 </form>
             @endif
+            <span class="like-count">{{ $item->likes_count }}</span>
         </div>
 
         {{-- 購入ボタン --}}

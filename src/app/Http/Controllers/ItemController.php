@@ -28,7 +28,7 @@ class ItemController extends Controller
 
     public function show($id)
     {
-        $item = Item::with('likes')->findOrFail($id);
+        $item = Item::withCount('likes')->findOrFail($id);
 
         return view('items.show', compact('item'));
     }
