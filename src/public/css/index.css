@@ -8,6 +8,15 @@
     gap: 20px;
 }
 
+.items-index__empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+    font-size: 16px;
+    white-space: nowrap;
+}
+
 .item-card {
     border: 1px solid #e5e7eb;
     border-radius: 5px;

@@ -35,9 +35,16 @@
             </div>
         @empty
             <p class="items-index__empty">
-                {{ $tab === 'mylist' ? 'マイリストに商品がありません。' : '現在おすすめ商品はありません。' }}
+                @if($tab === 'mylist' && !auth()->check())
+                    マイリストを見るには<a href="{{ route('login') }}">ログイン</a>が必要です
+                @elseif($tab === 'mylist')
+                    マイリストに商品がありません
+                @else
+                    現在おすすめ商品はありません
+                @endif
             </p>
         @endforelse
+
     </div>
     @if($items->lastPage() > 1)
     <div class="pagination">

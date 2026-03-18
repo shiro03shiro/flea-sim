@@ -14,7 +14,10 @@ class ItemController extends Controller
     {
         $tab = $request->query('tab');
 
-        if ($tab === 'mylist' && auth()->check()) {
+        if ($tab === 'mylist' && !auth()->check()) {
+            $items = Item::whereRaw('1=0')->paginate(1);
+            $items->setCollection(collect());
+        } elseif ($tab === 'mylist') {
             $items = Item::whereHas('likes', function ($query) {
                 $query->where('user_id', auth()->id());
             })->latest()->paginate(30);
