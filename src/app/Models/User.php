@@ -58,6 +58,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Item::class, 'purchases')->withPivot('payment_method');
     }
 
+    public function likedItems()
+    {
+        return $this->belongsToMany(Item::class, 'likes');
+    }
+
     public function comments()
     {
         return $this->belongsToMany(Item::class, 'comments')->withPivot('content');

@@ -28,7 +28,7 @@ class ItemController extends Controller
 
     public function show($id)
     {
-        $item = \App\Models\Item::findOrFail($id);
+        $item = Item::with('likes')->findOrFail($id);
 
         return view('items.show', compact('item'));
     }
@@ -44,9 +44,19 @@ class ItemController extends Controller
         return back();
     }
 
+    public function like($item_id)
+    {
+        $item = Item::findOrFail($item_id);
+        $item->likes()->attach(auth()->id());
+        return back();
+    }
 
-
-
+    public function unlike($item_id)
+    {
+        $item = Item::findOrFail($item_id);
+        $item->likes()->detach(auth()->id());
+        return back();
+    }
 
     public function create()
     {

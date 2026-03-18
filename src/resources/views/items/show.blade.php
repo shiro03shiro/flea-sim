@@ -15,16 +15,30 @@
         @endif
     </div>
 
-    <form class="form" action="/" method="post">
-        @csrf
-
-
     <div class="item-detail__content">
         {{-- 商品情報ヘッダー --}}
         <div class="item-detail__header">
             <h1 class="item-detail__name">{{ $item->name }}</h1>
             <p class="item-detail__brand">{{ $item->brand_name ?? 'ブランド名なし' }}</p>
             <p class="item-detail__price">¥{{ number_format($item->price) }}(税込)</p>
+        </div>
+
+        <div class="item-detail__like">
+            @if(auth()->check() && $item->isLikedByAuthUser())
+                <form action="{{ route('items.unlike', $item->id) }}" method="POST" style="display: inline;">
+                    @csrf @method('DELETE')
+                    <button type="submit" class="like-btn" title="いいねを解除">
+                        <img src="{{ asset('images/ハートロゴ_ピンク.png') }}" width="30" height="30">
+                    </button>
+                </form>
+            @else
+                <form action="{{ route('items.like', $item->id) }}" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit" class="like-btn" title="いいねを押す（ログイン必要）">
+                        <img src="{{ asset('images/ハートロゴ_デフォルト.png') }}" width="30" height="30">
+                    </button>
+                </form>
+            @endif
         </div>
 
         {{-- 購入ボタン --}}
