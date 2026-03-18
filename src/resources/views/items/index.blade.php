@@ -9,8 +9,8 @@
 
     {{-- タブメニュー --}}
     <div class="items-index__tabs">
-        <a href="{{ route('home') }}" class="@class(['tab-link','tab-link--active' => $tab !== 'mylist'])">おすすめ</a>
-        <a href="{{ route('home', ['tab' => 'mylist']) }}" class="@class(['tab-link', 'tab-link--active' => $tab === 'mylist'])">マイリスト</a>
+        <a href="{{ route('home') }}" class="tab-link {{ $tab !== 'mylist' ? 'tab-link--active' : '' }}">おすすめ</a>
+        <a href="{{ route('home', ['tab' => 'mylist']) }}" class="tab-link {{ $tab === 'mylist' ? 'tab-link--active' : '' }}">マイリスト</a>
     </div>
 
     {{-- 商品一覧 --}}
