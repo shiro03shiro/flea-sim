@@ -9,5 +9,5 @@ class Purchase extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['payment_method'];
+    protected $fillable = ['user_id','item_id','payment_method'];
 }

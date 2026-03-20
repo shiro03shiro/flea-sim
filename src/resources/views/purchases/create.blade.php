@@ -32,8 +32,8 @@
                     <div class="form__input--select">
                         <select name="payment_method" id="payment_method" required>
                             <option value="" disabled selected>選択してください</option>
-                            <option value="コンビニ払い">コンビニ払い</option>
-                            <option value="カード支払い">カード支払い</option>
+                            <option value="1">カード支払い</option>
+                            <option value="2">コンビニ払い</option>
                         </select>
                     </div>
                     <div class="form__error">
@@ -87,7 +87,9 @@
 
         const updateDisplay = () => {
             const value = select.value;
-            display.textContent = value ? value : '—';
+            const displayText = value === '1' ? 'カード支払い' : 
+                            value === '2' ? 'コンビニ払い' : '—';
+            display.textContent = displayText;
         };
 
         updateDisplay();

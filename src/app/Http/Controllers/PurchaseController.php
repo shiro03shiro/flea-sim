@@ -34,14 +34,17 @@ class PurchaseController extends Controller
             return redirect()->back()->with('error', '購入できない商品です');
         }
 
+        $paymentMethod = (int) $request->input('payment_method', 1);
+
         Purchase::create([
             'user_id' => Auth::id(),
             'item_id' => $item_id,
+            'payment_method' => $paymentMethod,
         ]);
 
         $item->update(['sold_flg' => true]);
 
-        return redirect()->route('mypage')->with('success', '購入が完了しました！');
+        return redirect()->route('profile.show')->with('success', '購入が完了しました！');
     }
 
     public function edit($item_id)
