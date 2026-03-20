@@ -86,51 +86,54 @@
                     </dd>
                 </div>
             </dl>
-            <h3 class="item-detail__section-title">
-                コメント（{{ $item->comments_count }}）
-            </h3>
-            @if($item->comments->isNotEmpty())
-                <div class="comments-list">
-                    @foreach($item->comments->take(10)->reverse() as $comment)
-                        <div class="comment-item">
-                            <div class="comment-avatar">
-                                @if(isset($comment->user->profile_image) && $comment->user->profile_image)
-                                    <img src="{{ asset('storage/' . $comment->user->profile_image) }}" 
-                                        alt="{{ $comment->user->name }}" class="avatar">
-                                @else
-                                    <div class="avatar-default">
-                                        {{ mb_substr($comment->user->name ?? '名無し', 0, 1) }}
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="comment-content">
-                                <div class="comment-header">
-                                    <span class="comment-author">{{ $comment->user->name ?? '名無し' }}</span>
-                                    <span class="comment-date">
-                                        {{ $comment->created_at->format('Y/m/d H:i') }}
-                                    </span>
+            <div class="comments-section">
+                <h3 class="item-detail__section-title">
+                    コメント（{{ $item->comments_count }}）
+                </h3>
+                @if($item->comments->isNotEmpty())
+                    <div class="comments-list">
+                        @foreach($item->comments->take(10)->reverse() as $comment)
+                            <div class="comment-item">
+                                <div class="comment-avatar">
+                                    @if($comment->user->profile?->avatar_path)
+                                        <img src="{{ asset('storage/' . $comment->user->profile->avatar_path) }}" 
+                                            alt="{{ $comment->user->name ?? 'ユーザー' }}" 
+                                            class="avatar">
+                                    @else
+                                        <div class="avatar-default">
+                                            {{ mb_substr($comment->user->name ?? '名無し', 0, 1) }}
+                                        </div>
+                                    @endif
                                 </div>
-                                <p class="comment-text">{{ $comment->content }}</p>
+                                <div class="comment-content">
+                                    <div class="comment-header">
+                                        <span class="comment-author">{{ $comment->user->name ?? '名無し' }}</span>
+                                        <span class="comment-date">
+                                            {{ $comment->created_at->format('Y/m/d H:i') }}
+                                        </span>
+                                    </div>
+                                    <p class="comment-text">{{ $comment->content }}</p>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
-            @else
-                <p>まだコメントはありません。</p>
-            @endif
-            <form action="{{ route('items.comment', $item->id) }}" method="POST" class="item-comment-form">
-                @csrf
-                <div class="form__group">
-                    <label for="content">商品へのコメント</label>
-                    <textarea name="content" id="content" rows="3">{{ old('content') }}</textarea>
-                    @error('content')
-                        <div class="form__error">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="form__button">
-                    <button class="form__button-submit" type="submit">コメントを送信する</button>
-                </div>
-            </form>
+                        @endforeach
+                    </div>
+                @else
+                    <p>まだコメントはありません。</p>
+                @endif
+                <form action="{{ route('items.comment', $item->id) }}" method="POST" class="item-comment-form">
+                    @csrf
+                    <div class="form__group">
+                        <label for="content">商品へのコメント</label>
+                        <textarea name="content" id="content" rows="3">{{ old('content') }}</textarea>
+                        @error('content')
+                            <div class="form__error">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form__button">
+                        <button class="form__button-submit" type="submit">コメントを送信する</button>
+                    </div>
+                </form>
+            </div>    
         </div>
     </div>
 </div>
