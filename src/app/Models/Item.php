@@ -29,7 +29,8 @@ class Item extends Model
         return auth()->check() && $this->likes->contains(auth()->id());
     }
 
-    public function comments(){
-        return $this->belongsToMany(User::class, 'comments')->withPivot('content');
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

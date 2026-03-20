@@ -86,14 +86,30 @@
                     </dd>
                 </div>
             </dl>
-            <h3 class="item-detail__section-title">コメント(count)</h3>
-            <div>商品へのコメント</div>
-            <input type="text">
-            <div class="form__button">
-                <button class="form__button-submit" type="submit">
-                    コメントを送信する
-                </button>
-            </div>
+            <h3 class="item-detail__section-title">
+                コメント（{{ $item->comments_count }}）
+            </h3>
+            @if($item->comments->isNotEmpty())
+            @else
+                <p>まだコメントはありません。</p>
+            @endif
+            <form action="{{ route('items.comment', $item->id) }}" method="POST" class="item-comment-form">
+                @csrf
+                <div class="form__group">
+                    <label for="content">商品へのコメント</label>
+                    <textarea name="content" id="content" rows="3">
+                        {{ old('content') }}
+                    </textarea>
+                    @error('content')
+                        <div class="form__error">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form__button">
+                    <button class="form__button-submit" type="submit">
+                        コメントを送信する
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\ExhibitionRequest;
+use App\Http\Requests\CommentRequest;
 
 class ItemController extends Controller
 {
@@ -31,17 +32,19 @@ class ItemController extends Controller
 
     public function show($id)
     {
-        $item = Item::withCount('likes')->findOrFail($id);
+        $item = Item::with(['comments.user'])
+                ->withCount('likes', 'comments')
+                ->findOrFail($id);
 
         return view('items.show', compact('item'));
     }
 
-    public function comment(Request $request,$item_id)
+    public function comment(CommentRequest $request,$item_id)
     {
         Comment::create([
             'user_id'=>auth()->id(),
             'item_id'=>$item_id,
-            'content'=>$request->content
+            'content'=>$request->content,
         ]);
 
         return back();
