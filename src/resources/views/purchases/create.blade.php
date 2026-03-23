@@ -30,7 +30,7 @@
                 <h3 class="form__group-title">支払い方法</h3>
                 <div class="form__group-content">
                     <div class="form__input--select">
-                        <select name="payment_method" id="payment_method" required>
+                        <select name="payment_method" id="payment_method">
                             <option value="" disabled selected>選択してください</option>
                             <option value="1">カード支払い</option>
                             <option value="2">コンビニ払い</option>

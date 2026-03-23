@@ -32,3 +32,9 @@
 .form__group {
     margin-top: 20px;
 }
+
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
+}

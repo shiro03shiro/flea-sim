@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Purchase;
 use App\Http\Requests\AddressRequest;
+use App\Http\Requests\PurchaseRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +27,7 @@ class PurchaseController extends Controller
         return view('purchases.create', compact('item'));
     }
 
-    public function store(Request $request, $item_id)
+    public function store(PurchaseRequest $request, $item_id)
     {
         $item = Item::findOrFail($item_id);
 
@@ -44,7 +45,7 @@ class PurchaseController extends Controller
 
         $item->update(['sold_flg' => true]);
 
-        return redirect()->route('profile.show')->with('success', '購入が完了しました！');
+        return redirect()->route('home')->with('success', '購入が完了しました！');
     }
 
     public function edit($item_id)
