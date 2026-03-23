@@ -28,7 +28,11 @@
                         <a href="{{ route('items.show', $purchase->item->id) }}" class="item-card__link">
                             <div class="item-card__image-wrapper">
                                 @if($purchase->item->image_path)
-                                    <img src="{{ asset('storage/' . $purchase->item->image_path) }}" alt="{{ $purchase->item->name }}" class="item-card__image">
+                                    @if(Str::startsWith($purchase->item->image_path, ['http://', 'https://']))
+                                        <img src="{{ $purchase->item->image_path }}" alt="{{ $purchase->item->name }}" class="item-card__image">
+                                    @else
+                                        <img src="{{ asset('storage/' . $purchase->item->image_path) }}" alt="{{ $purchase->item->name }}" class="item-card__image">
+                                    @endif
                                 @else
                                     <img src="{{ asset('images/default-item.png') }}" alt="画像なし" class="item-card__image">
                                 @endif
@@ -55,7 +59,11 @@
                         <a href="{{ route('items.show', $item->id) }}" class="item-card__link">
                             <div class="item-card__image-wrapper">
                                 @if($item->image_path)
-                                    <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}" class="item-card__image">
+                                    @if(Str::startsWith($item->image_path, ['http://', 'https://']))
+                                        <img src="{{ $item->image_path }}" alt="{{ $item->name }}" class="item-card__image">
+                                    @else
+                                        <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}" class="item-card__image">
+                                    @endif
                                 @else
                                     <img src="{{ asset('images/default-item.png') }}" alt="画像なし" class="item-card__image">
                                 @endif

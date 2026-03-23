@@ -57,14 +57,12 @@
             <div class="form__group-content">
 
                 <div class="category__button-list">
-
                     @foreach($categories as $category)
                     <label class="category__button">
-                        <input type="checkbox" name="category_id[]" value="{{ $category->id }}"{{ in_array($category->id, old('category_id', [])) ? 'checked' : '' }}>
+                        <input type="checkbox" name="category_id[]" value="{{ $category->id }}" {{ in_array($category->id, old('category_id', [])) ? 'checked' : '' }}>
                         <span>{{ $category->name }}</span>
                     </label>
                     @endforeach
-
                 </div>
 
                 <div class="form__error">
@@ -75,7 +73,6 @@
 
             </div>
         </div>
-
 
         {{-- 商品状態 --}}
         <div class="form__group">
