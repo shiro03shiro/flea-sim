@@ -20,7 +20,11 @@
                 <a href="{{ route('items.show', $item->id) }}" class="item-card__link">
                     <div class="item-card__image-wrapper">
                         @if($item->image_path)
-                            <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}" class="item-card__image">
+                            @if(Str::startsWith($item->image_path, ['http://', 'https://']))
+                                <img src="{{ $item->image_path }}" alt="{{ $item->name }}" class="item-card__image">
+                            @else
+                                <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}" class="item-card__image">
+                            @endif
                         @else
                             <img src="{{ asset('images/default-item.png') }}" alt="画像なし" class="item-card__image">
                         @endif
@@ -44,8 +48,8 @@
                 @endif
             </p>
         @endforelse
-
     </div>
+    
     @if($items->lastPage() > 1)
     <div class="pagination">
         @if(!$items->onFirstPage())

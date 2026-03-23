@@ -9,7 +9,11 @@
     {{-- 商品メイン画像 --}}
     <div class="item-detail__image-wrapper">
         @if($item->image_path)
-            <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}" class="item-detail__image">
+            @if(Str::startsWith($item->image_path, ['http://', 'https://']))
+                <img src="{{ $item->image_path }}" alt="{{ $item->name }}" class="item-detail__image">
+            @else
+                <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}" class="item-detail__image">
+            @endif
         @else
             <img src="{{ asset('images/default-item.png') }}" alt="画像なし" class="item-detail__image">
         @endif

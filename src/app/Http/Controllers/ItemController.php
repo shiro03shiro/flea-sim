@@ -8,6 +8,8 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\ExhibitionRequest;
 use App\Http\Requests\CommentRequest;
+use Illuminate\Support\Str;
+
 
 class ItemController extends Controller
 {
@@ -82,6 +84,11 @@ class ItemController extends Controller
         $path = null;
         if ($request->hasFile('image_path') && $request->file('image_path')->isValid()) {
             $path = $request->file('image_path')->store('items', 'public');
+        }
+        elseif ($request->filled('image_path') && !Str::startsWith($request->image_path, ['http://', 'https://'])) {
+            $path = null;
+        } else {
+            $path = $request->image_path;
         }
 
         $item = Item::create([
