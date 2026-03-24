@@ -18,6 +18,13 @@
         <a class="header__logo" href="/">
           <img src="{{ asset('images/COACHTECHヘッダーロゴ.png') }}" alt="COACHTECH">
         </a>
+        @if (! in_array(Route::currentRouteName(), ['login', 'register']))
+          <form class="header__search-form" action="{{ route('home') }}" method="GET">
+            <input type="text" name="keyword" value="{{ request('keyword') }}" placeholder="なにをお探しですか？" class="header__search-input">
+            <button type="submit" class="header__search-button">検索</button>
+          </form>
+        @endif
+
         <nav>
           <ul class="header-nav">
             @if (Auth::check())
@@ -36,7 +43,6 @@
             @else
             <li class="header-nav__item">
                 <a class="header-nav__link" href="/login">ログイン</a>
-              </form>
             </li>
             <li class="header-nav__item">
               <a class="header-nav__link" href="/mypage">マイページ</a>

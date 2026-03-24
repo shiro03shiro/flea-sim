@@ -16,20 +16,35 @@ class ItemController extends Controller
     public function index(Request $request)
     {
         $tab = $request->query('tab');
+        
+        $keyword = $request->input('keyword', '');
+
+        $query = Item::query();
+
+        if (!empty($keyword)) {
+            $query->where('name', 'LIKE', "%{$keyword}%");
+        }
+
+        $items = null;
 
         if ($tab === 'mylist' && !auth()->check()) {
             $items = Item::whereRaw('1=0')->paginate(1);
             $items->setCollection(collect());
         } elseif ($tab === 'mylist') {
-            $items = Item::whereHas('likes', function ($query) {
-                $query->where('user_id', auth()->id());
-            })->latest()->paginate(30);
+            $items = $query->whereHas('likes', function ($q) {
+                $q->where('user_id', auth()->id());
+            })
+            ->latest()
+            ->paginate(30)
+            ->appends(request()->query());
         } else {
-            $query = auth()->check() ? Item::where('user_id', '!=', auth()->id()) : Item::query();
-            $items = $query->latest()->paginate(30);
+            if (auth()->check()) {
+                $query->where('user_id', '!=', auth()->id());
+            }
+            $items = $query->latest()->paginate(30)->appends(request()->query());
         }
 
-        return view('items.index', compact('items', 'tab'));
+        return view('items.index', compact('items', 'tab', 'keyword'));
     }
 
     public function show($id)

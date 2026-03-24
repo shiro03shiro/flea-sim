@@ -43,6 +43,8 @@
                     マイリストを見るには<a href="{{ route('login') }}">ログイン</a>が必要です
                 @elseif($tab === 'mylist')
                     マイリストに商品がありません
+                @elseif($keyword)
+                    「{{ e($keyword) }}」に一致する商品がありません
                 @else
                     現在おすすめ商品はありません
                 @endif
