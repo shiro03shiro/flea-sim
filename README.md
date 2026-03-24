@@ -62,4 +62,4 @@ chown www-data:www-data storage/logs/laravel.log
 ## その他
 
 - 要件ID[FN024]　テーブル内では各アイテムに送付先住所が紐づいている
-- → purchasesテーブル内の外部キーで紐づいていると判断しました。
+→ purchasesテーブル内の外部キーで紐づいていると判断しました。
