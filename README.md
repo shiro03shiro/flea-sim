@@ -58,3 +58,8 @@ chown www-data:www-data storage/logs/laravel.log
 
 - 開発環境：http://localhost/
 - phpMyAdmin：http://localhost:8080/
+
+## その他
+
+- 要件ID[FN024]　テーブル内では各アイテムに送付先住所が紐づいている
+- → purchasesテーブル内の外部キーで紐づいていると判断しました。
