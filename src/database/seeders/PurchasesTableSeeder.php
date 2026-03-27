@@ -13,6 +13,19 @@ class PurchasesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $user3 = DB::table('users')->where('id', 3)->first();
+        $item = DB::table('items')->where('user_id', 2)->where('sold_flg', 0)->first();
+
+        if ($item) {
+            DB::table('items')->where('id', $item->id)->update(['sold_flg' => 1]);
+            
+            DB::table('purchases')->insert([
+                'user_id' => $user3->id,
+                'item_id' => $item->id,
+                'payment_method' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

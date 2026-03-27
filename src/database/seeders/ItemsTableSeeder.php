@@ -14,20 +14,7 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
-        $testUser = DB::table('users')->where('email', 'test@example.com')->first();
-
-        if (!$testUser) {
-            $userId = DB::table('users')->insertGetId([
-                'name' => 'テストユーザー',
-                'email' => 'test@example.com',
-                'email_verified_at' => now(),
-                'password' => bcrypt('password'),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        } else {
-            $userId = $testUser->id;
-        }
+        $user2 = DB::table('users')->where('id', 2)->first();
 
         $items = [
             [
@@ -38,8 +25,6 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'スタイリッシュなデザインのメンズ腕時計。日常使いに最適です。',
                 'condition' => 3,
                 'sold_flg' => 0,
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'image_path' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/HDD+Hard+Disk.jpg',
@@ -49,8 +34,6 @@ class ItemsTableSeeder extends Seeder
                 'description' => '高速で信頼性の高いハードディスク。データ保存に最適です。',
                 'condition' => 2,
                 'sold_flg' => 0,
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'image_path' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/iLoveIMG+d.jpg',
@@ -60,8 +43,6 @@ class ItemsTableSeeder extends Seeder
                 'description' => '新鮮な玉ねぎ3束のセット。料理に最適です。',
                 'condition' => 1,
                 'sold_flg' => 0,
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'image_path' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Leather+Shoes+Product+Photo.jpg',
@@ -71,8 +52,6 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'クラシックなデザインの革靴。フォーマルシーンに。',
                 'condition' => 0,
                 'sold_flg' => 0,
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'image_path' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Living+Room+Laptop.jpg',
@@ -82,8 +61,6 @@ class ItemsTableSeeder extends Seeder
                 'description' => '高性能なノートパソコン。仕事・プライベートに活躍。',
                 'condition' => 3,
                 'sold_flg' => 0,
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'image_path' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Music+Mic+4632231.jpg',
@@ -93,8 +70,6 @@ class ItemsTableSeeder extends Seeder
                 'description' => '高音質のレコーディング用マイク。配信・録音に最適。',
                 'condition' => 2,
                 'sold_flg' => 0,
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'image_path' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Purse+fashion+pocket.jpg',
@@ -104,8 +79,6 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'おしゃれなショルダーバッグ。日常使いにぴったり。',
                 'condition' => 1,
                 'sold_flg' => 0,
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'image_path' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Tumbler+souvenir.jpg',
@@ -115,8 +88,6 @@ class ItemsTableSeeder extends Seeder
                 'description' => '使いやすいタンブラー。飲み物を持ち運びに便利。',
                 'condition' => 0,
                 'sold_flg' => 0,
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'image_path' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Waitress+with+Coffee+Grinder.jpg',
@@ -126,8 +97,6 @@ class ItemsTableSeeder extends Seeder
                 'description' => '手動のコーヒーミル。自宅で本格コーヒーを。',
                 'condition' => 3,
                 'sold_flg' => 0,
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'image_path' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/%E5%A4%96%E5%87%BA%E3%83%A1%E3%82%A4%E3%82%AF%E3%82%A2%E3%83%83%E3%83%95%E3%82%9A%E3%82%BB%E3%83%83%E3%83%88.jpg',
@@ -137,15 +106,52 @@ class ItemsTableSeeder extends Seeder
                 'description' => '便利なメイクアップセット。お出かけに最適です。',
                 'condition' => 2,
                 'sold_flg' => 0,
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
         ];
 
         foreach ($items as &$item) {
-            $item['user_id'] = $userId;
+            $item['user_id'] = $user2->id;
+            $item['created_at'] = now();
+            $item['updated_at'] = now();
         }
 
         DB::table('items')->insert($items);
+
+        $itemRecords = DB::table('items')
+            ->where('user_id', $user2->id)
+            ->orderBy('created_at', 'asc')
+            ->pluck('id', 'name')
+            ->toArray();
+
+        $itemCategories = [
+            '腕時計' => ['ファッション', 'メンズ', 'レディース', 'アクセサリー'],
+            'HDD' => ['家電'],
+            '玉ねぎ3束' => ['キッチン'],
+            '革靴' => ['ファッション', 'メンズ', 'レディース'],
+            'ノートPC' => ['家電'],
+            'マイク' => ['家電'],
+            'ショルダーバッグ' => ['ファッション', 'メンズ', 'レディース'],
+            'タンブラー' => ['キッチン'],
+            'コーヒーミル' => ['キッチン'],
+            'メイクセット' => ['コスメ', 'レディース'],
+        ];
+
+        $categories = DB::table('categories')->pluck('id', 'name')->toArray();
+
+        foreach ($itemCategories as $itemName => $categoriesForItem) {
+            $itemId = $itemRecords[$itemName] ?? null;
+            if (!$itemId) continue;
+
+            foreach ($categoriesForItem as $catName) {
+                if (isset($categories[$catName])) {
+                    DB::table('item_category')->insert([
+                        'item_id' => $itemId,
+                        'category_id' => $categories[$catName],
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
+            }
+        }
     }
 }

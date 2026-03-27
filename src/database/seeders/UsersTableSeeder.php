@@ -13,6 +13,34 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('users')->insert([
+            [
+                'id' => 1,
+                'name' => 'user1',
+                'email' => 'user1@example.com',
+                'password' => Hash::make('password'),
+                'is_profile_completed' => false,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 2,
+                'name' => 'user2',
+                'email' => 'user2@example.com',
+                'password' => Hash::make('password'),
+                'is_profile_completed' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 3,
+                'name' => 'user3',
+                'email' => 'user3@example.com',
+                'password' => Hash::make('password'),
+                'is_profile_completed' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
     }
 }
