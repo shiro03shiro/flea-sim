@@ -19,6 +19,8 @@
 }
 
 .header__search {
+    display: flex;
+    align-items: center;
     flex: 1 1 500px;
     max-width: 500px;
     margin: 0 auto;
@@ -26,11 +28,22 @@
 
 .header__search-input {
     flex: 1;
-    padding: 6px 10px;
+    padding: 8px 12px;
+    height: 36px;
+    border: 1px solid #ccc;
+    border-right: none;
+    outline: none;
+    box-sizing: border-box;
 }
 
 .header__search-button {
-    padding: 6px 12px;
+    padding: 8px 12px;
+    height: 36px;
+    border: 1px solid #ccc;
+    border-left: none;
+    background: #fff;
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
 .header-utilities nav {
