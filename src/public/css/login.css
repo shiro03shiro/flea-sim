@@ -1,7 +1,9 @@
 .login-form__content {
     margin: 0 auto;
     padding: 30px 15px;
-    max-width: 1230px;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
 }
 
 .login-form__heading {

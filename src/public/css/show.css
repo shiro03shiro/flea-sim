@@ -8,8 +8,8 @@
     pointer-events: none;
     opacity: 0.6;
     cursor: not-allowed;
-    background-color: #ccc !important;
-    color: #666 !important;
+    background-color: #ccc;
+    color: #666;
 }
 
 .item-detail__like {
@@ -266,40 +266,40 @@ textarea {
 }
 
 .category__button-list {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 10px !important;
-    margin: 10px 0 !important;
-    padding: 10px !important;
-    background: #f9f9f9 !important;
-    border-radius: 8px !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
 }
 
 .category__button {
-    display: flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    padding: 12px 20px !important;
-    background: white !important;
-    border: 2px solid #e5e7eb !important;
-    border-radius: 25px !important;
-    cursor: pointer !important;
-    transition: all 0.2s ease !important;
-    font-weight: 500 !important;
-    white-space: nowrap !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
 }
 
 .category__button:hover {
-    background: #3b82f6 !important;
-    border-color: #3b82f6 !important;
-    color: white !important;
+    background: #3b82f6;
+    border-color: #3b82f6;
+    color: white;
 }
 
 .category__button input[type="checkbox"] {
-    margin: 0 !important;
-    accent-color: #3b82f6 !important;
+    margin: 0;
+    accent-color: #3b82f6;
 }
 
 .category__button input[type="checkbox"]:checked+span {
-    font-weight: 600 !important;
+    font-weight: 600;
 }
