@@ -11,7 +11,8 @@
 
 .form {
     margin: 0 auto;
-    width: 25%;
+    width: 100%;
+    max-width: 400px;
     text-align: center;
 }
 
@@ -24,7 +25,8 @@
 }
 
 .form__error {
-    height: 20px;
+    min-height: 20px;
+    line-height: 20px;
     color: #ff0000;
     text-align: left;
 }
@@ -35,7 +37,6 @@
     height: 40px;
     border: 1px solid #ddd;
     border-radius: 3px;
-
     appearance: none;
 }
 
@@ -45,7 +46,7 @@
 
 .form__button-submit {
     padding: 10px;
-    width: 30%;
+    width: 100%;
     height: 50px;
     border: none;
     border-radius: 3px;
@@ -57,4 +58,13 @@
 .register__link {
     margin-top: 20px;
     text-align: center;
+}
+
+.register__button-submit{
+    text-decoration: none;
+    color: #338fd6;
+}
+
+.register__button-submit:hover {
+    text-decoration: underline;
 }

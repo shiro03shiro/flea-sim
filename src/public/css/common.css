@@ -3,16 +3,15 @@
 }
 
 .header__inner {
-    width: 100%;
-    max-width: 1540px;
     margin: 0 auto;
-    padding: 20px 24px;
+    padding: 20px 15px;
+    max-width: 1230px;
 }
 
 .header-utilities {
     display: flex;
     align-items: center;
-    gap: 16px;
+    justify-content: space-between;
 }
 
 .header__logo {
@@ -34,11 +33,14 @@
     padding: 6px 12px;
 }
 
+.header-utilities nav {
+    width: 18%;
+}
+
 .header-nav {
-    margin-left: auto;
     display: flex;
     align-items: center;
-    gap: 24px;
+    justify-content: space-between;
 }
 
 .header-nav__link {
