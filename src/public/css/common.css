@@ -9,7 +9,7 @@
     padding: 20px 24px;
 }
 
-.header__content {
+.header-utilities {
     display: flex;
     align-items: center;
     gap: 16px;
@@ -34,23 +34,19 @@
     padding: 6px 12px;
 }
 
-.header__nav {
+.header-nav {
     margin-left: auto;
     display: flex;
     align-items: center;
-}
-
-.header__list {
-    display: flex;
     gap: 24px;
 }
 
-.header__link {
+.header-nav__link {
     color: #fff;
     text-decoration: none;
 }
 
-.header__button {
+.header-nav__button {
     border: none;
     background: transparent;
     color: #fff;
@@ -63,7 +59,7 @@
         padding: 16px;
     }
 
-    .header__content {
+    .header-utilities {
         flex-wrap: wrap;
     }
 
@@ -74,11 +70,11 @@
         margin-top: 12px;
     }
 
-    .header__nav {
+    .header-nav {
         margin-left: auto;
     }
 
-    .header__list {
+    .header-nav {
         gap: 16px;
     }
 }

@@ -6,11 +6,6 @@
 
 @section('content')
 <div class="login-form__content">
-  @if (session('error'))
-    <div class="form__error">
-      {{ session('error') }}
-    </div>
-  @endif
   <div class="login-form__heading">
     <h2>ログイン</h2>
   </div>

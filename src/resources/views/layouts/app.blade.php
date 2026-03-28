@@ -14,7 +14,7 @@
 <body>
   <header class="header">
     <div class="header__inner">
-      <div class="header__content">
+      <div class="header-utilities">
         <a class="header__logo" href="/">
           <img src="{{ asset('images/COACHTECHヘッダーロゴ.png') }}" alt="COACHTECH">
         </a>
@@ -24,30 +24,30 @@
             <button class="header__search-button" type="submit">検索</button>
           </form>
 
-          <nav class="header__nav">
-            <ul class="header__list">
+          <nav>
+            <ul class="header-nav">
               @if (Auth::check())
-                <li class="header__item">
-                  <form class="form" action="/logout" method="post">
+                <li class="header-nav__item">
+                  <form action="/logout" method="post">
                     @csrf
-                    <button class="header__button">ログアウト</button>
+                    <button class="header-nav__button">ログアウト</button>
                   </form>
                 </li>
-                <li class="header__item">
-                  <a class="header__link" href="/mypage">マイページ</a>
+                <li class="header-nav__item">
+                  <a class="header-nav__link" href="/mypage">マイページ</a>
                 </li>
-                <li class="header__item">
-                  <a class="header__link" href="/sell">出品</a>
+                <li class="header-nav__item">
+                  <a class="header-nav__link" href="/sell">出品</a>
                 </li>
               @else
-                <li class="header__item">
-                    <a class="header__link" href="/login">ログイン</a>
+                <li class="header-nav__item">
+                    <a class="header-nav__link" href="/login">ログイン</a>
                 </li>
-                <li class="header__item">
-                  <a class="header__link" href="/mypage">マイページ</a>
+                <li class="header-nav__item">
+                  <a class="header-nav__link" href="/mypage">マイページ</a>
                 </li>
-                <li class="header__item">
-                  <a class="header__link" href="/sell">出品</a>
+                <li class="header-nav__item">
+                  <a class="header-nav__link" href="/sell">出品</a>
                 </li>
               @endif
             </ul>
