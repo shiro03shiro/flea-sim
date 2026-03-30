@@ -24,3 +24,20 @@
 .profile__image-preview {
     margin-bottom: 16px;
 }
+
+.edit__button {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #ff5655;
+    border: 2px solid #ff5655;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.edit__button:hover {
+    background: #f3f4f6;
+    border-color: #ff5655;
+}

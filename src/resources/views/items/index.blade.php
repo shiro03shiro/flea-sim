@@ -8,13 +8,13 @@
 <div class="items-index">
 
     {{-- タブメニュー --}}
-    <div class="items-index__tabs">
-        <a href="{{ route('home') }}" class="tab-link {{ $tab !== 'mylist' ? 'tab-link--active' : '' }}">おすすめ</a>
-        <a href="{{ route('home', ['tab' => 'mylist']) }}" class="tab-link {{ $tab === 'mylist' ? 'tab-link--active' : '' }}">マイリスト</a>
+    <div class="tabs">
+        <a href="{{ route('home') }}" class="tab {{ $tab !== 'mylist' ? 'tab--active' : '' }}">おすすめ</a>
+        <a href="{{ route('home', ['tab' => 'mylist']) }}" class="tab {{ $tab === 'mylist' ? 'tab--active' : '' }}">マイリスト</a>
     </div>
 
     {{-- 商品一覧 --}}
-    <div class="items-index__list">
+    <div class="items-grid">
         @forelse ($items as $item)
             <div class="item-card">
                 <a href="{{ route('items.show', $item->id) }}" class="item-card__link">
