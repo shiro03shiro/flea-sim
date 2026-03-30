@@ -8,8 +8,25 @@
     font-size: x-large;
 }
 
+.profile-header {
+    max-width: 1017px;
+    margin: 0 auto;
+    padding: 60px 60px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.profile-header h2 {
+    width: 300px;
+    margin-left: 100px;
+    margin-right: 50px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
 .profile-avatar {
-    margin: 20px;
+    margin: 0;
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -27,12 +44,14 @@
 
 .edit__button {
     display: inline-block;
-    padding: 10px 20px;
+    margin-left: 10px;
+    padding: 10px 10px;
     text-decoration: none;
     color: #ff5655;
     border: 2px solid #ff5655;
     border-radius: 8px;
     font-weight: bold;
+    font-size: 16px;
     cursor: pointer;
     transition: all 0.2s;
 }
