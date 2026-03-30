@@ -30,14 +30,17 @@ class ProfileController extends Controller
         $profile = $user->profile;
         return view('profile.edit', compact('user', 'profile'));
     }
-    public function update(ProfileRequest $request, User $user)
+    public function update(ProfileRequest $request)
     {
         $user = auth()->user();
+
+        $isFirst = ! $user->is_profile_completed;
 
         $user->update([
             'name' => $request->name,
             'is_profile_completed' => true,
         ]);
+
         $profileData = [
             'postal_code' => $request->postal_code,
             'address' => $request->address,
@@ -53,7 +56,9 @@ class ProfileController extends Controller
         }
 
         $user->profile()->updateOrCreate(['user_id' => $user->id], $profileData);
-        $redirectTo = $request->input('redirect_to') ?: route('profile.show');
+
+        $redirectTo = $isFirst ? route('home') : route('profile.show');
+
         return redirect()->to($redirectTo)->with('success', 'プロフィールが更新されました');
     }
 }
