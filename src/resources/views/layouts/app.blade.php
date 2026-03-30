@@ -52,6 +52,8 @@
               @endif
             </ul>
           </nav>
+        @else
+          <div class="header__search header__search--empty"></div>
         @endif
       </div>
     </div>

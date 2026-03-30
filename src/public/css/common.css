@@ -1,32 +1,36 @@
 .header {
-    background: #000;
     position: sticky;
     top: 0;
     z-index: 200;
+    background: #000;
 }
 
 .header__inner {
     margin: 0 auto;
-    padding: 20px 15px;
     max-width: 1230px;
+    height: 80px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
 }
 
 .header-utilities {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    width: 100%;
 }
 
 .header__logo {
-    margin-right: 24px;
+    flex: 0 0 auto;
 }
 
 .header__search {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 40px;
+    height: 40px;
     display: flex;
     align-items: center;
-    flex: 1 1 500px;
-    max-width: 500px;
-    margin: 0 auto;
 }
 
 .header__search-input {
@@ -50,13 +54,15 @@
 }
 
 .header-utilities nav {
-    width: 18%;
+    width: auto;
 }
 
 .header-nav {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-    justify-content: space-between;
+    gap: 20px;
+    margin-left: auto;
 }
 
 .header-nav__link {
@@ -69,6 +75,11 @@
     background: transparent;
     color: #fff;
     cursor: pointer;
+}
+
+.header__search--empty {
+    flex: 1;
+    height: 40px;
 }
 
 .form-container {
