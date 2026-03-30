@@ -1,17 +1,28 @@
-.items-index{
-    padding: 30px 15px;
-}
-
 .items-index__tabs {
     position: sticky;
     top: 80px;
     z-index: 100;
+    background: #fff;
+    border-bottom: 2px solid #5f5f5f;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
 }
 
-.items-index__list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+.tab-link {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 16px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #5f5f5f;
+}
+
+.tab-link--active {
+    color: #ff0000;
+    font-weight: bold;
 }
 
 .empty-state {
@@ -23,16 +34,25 @@
     white-space: nowrap;
 }
 
-.item-card {
-    border: 1px solid #e5e7eb;
-    border-radius: 5px;
-    overflow: hidden;
+.items-index__list {
+    margin: 50px 50px 0px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.item-card__link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.item-card__name {
+    margin: 8px 0;
 }
 
 .item-card__image-wrapper {
     position: relative;
     padding-top: 100%;
-    background: #f3f4f6;
 }
 
 .item-card__image {
@@ -42,6 +62,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    overflow: hidden;
+    border-radius: 8px;
 }
 
 .sold-badge {
