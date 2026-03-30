@@ -303,27 +303,6 @@ textarea {
     gap: 8px;
 }
 
-@media (max-width: 768px) {
-    .comment-item {
-        flex-direction: column;
-        gap: 12px;
-        padding: 16px;
-    }
-
-    .comment-avatar {
-        align-self: flex-start;
-    }
-
-    .comment-header {
-        flex-wrap: wrap;
-    }
-
-    .comment-author {
-        max-width: none;
-    }
-}
-
-/* ★カテゴリボタン表示用（ファイル最後に追加） */
 .category__button-list {
     display: flex;
     flex-wrap: wrap;

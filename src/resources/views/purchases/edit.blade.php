@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<div class="address-form__content">
+<div class="form-container address-form__content">
     <div class="address-form__heading">
         <h2>住所の変更</h2>
     </div>
@@ -51,7 +51,6 @@
                 <div class="form__input--text">
                 <input type="text" name="building" value="{{ old('building', $profile->building ?? '') }}" />
                 </div>
-            </div>
             </div>
         </div>
         <input type="hidden" name="redirect_to" value="{{ request()->get('redirect_to', '') }}">

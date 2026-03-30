@@ -3,11 +3,12 @@
 }
 
 .form__group {
-    margin-bottom: 5px;
+    margin-bottom: 16px;
 }
 
 .form__group-title {
     text-align: left;
+    font-size: large;
 }
 
 .form__error {
@@ -27,7 +28,7 @@
 }
 
 .form__button {
-    margin-top: 40px;
+    margin-top: 32px;
 }
 
 .form__button-submit {
@@ -39,20 +40,4 @@
     background: #ff5555;
     color: #fff;
     cursor: pointer;
-}
-
-@media (min-width: 768px) and (max-width: 850px) {
-
-    .form {
-        max-width: 100%;
-        padding: 0 10px;
-    }
-
-    .form__button-submit {
-        height: 45px;
-    }
-
-    .form__group-title {
-        font-size: 14px;
-    }
 }

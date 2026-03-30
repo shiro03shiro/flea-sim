@@ -68,28 +68,8 @@
     cursor: pointer;
 }
 
-@media (min-width: 768px) and (max-width: 850px) {
-
-    .header__inner {
-        padding: 16px;
-    }
-
-    .header-utilities {
-        flex-wrap: wrap;
-    }
-
-    .header__search {
-        order: 3;
-        width: 100%;
-        max-width: none;
-        margin-top: 12px;
-    }
-
-    .header-nav {
-        margin-left: auto;
-    }
-
-    .header-nav {
-        gap: 16px;
-    }
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px 15px;
 }

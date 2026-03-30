@@ -1,14 +1,13 @@
 .login-form__content {
     margin: 0 auto;
     padding: 30px 15px;
-    width: 100%;
-    max-width: 400px;
-    box-sizing: border-box;
 }
 
 .login-form__heading {
-    margin-bottom: 20px;
+    margin-top: 40px;
+    margin-bottom: 30px;
     text-align: center;
+    font-size:x-large;
 }
 
 .register__link {
@@ -23,16 +22,4 @@
 
 .register__button-submit:hover {
     text-decoration: underline;
-}
-
-@media (min-width: 768px) and (max-width: 850px) {
-
-    .login-form__content {
-        padding: 20px 15px;
-    }
-
-    .register__link {
-        font-size: 14px;
-    }
-
 }

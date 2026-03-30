@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<div class="profile-form__content">
+<div class="form-container profile-form__content">
     <div class="profile-form__heading">
         <h2>プロフィール設定</h2>
     </div>
@@ -15,22 +15,24 @@
         @csrf
         <div class="form__group">
             <div class="form__group-image">
-                <div class="form__group-content profile__image-area">
-                    <div class="profile__image-preview">
-                        @if(@isset($profile) && !@empty($profile->avatar_path))
-                            <img src="{{ asset('storage/' . $profile->avatar_path) }}" alt="プロフィール画像" class="profile-avatar"/>
-                        @else
-                            <img src="{{ asset('images/default-avatar.png') }}" alt="プロフィール画像" class="profile-avatar"/>
-                        @endif
-                    </div>
-                    <div class="form__input--file">
-                        <input type="file" id="avatar_path" name="avatar_path" accept="image/*" onchange="previewImage(event)">
-                        <label for="avatar_path" class="file__button">画像を選択する</label>
-                    </div>
-                    <div class="form__error">
-                        @error('avatar_path')
-                            {{ $message }}
-                        @enderror
+                <div class="profile__image-area">
+                    <div class="form__group-content">
+                        <div class="profile__image-preview">
+                            @if(@isset($profile) && !@empty($profile->avatar_path))
+                                <img src="{{ asset('storage/' . $profile->avatar_path) }}" alt="プロフィール画像" class="profile-avatar"/>
+                            @else
+                                <img src="{{ asset('images/default-avatar.png') }}" alt="プロフィール画像" class="profile-avatar"/>
+                            @endif
+                        </div>
+                        <div class="form__input--file">
+                            <input type="file" id="avatar_path" name="avatar_path" accept="image/*" onchange="previewImage(event)">
+                            <label for="avatar_path" class="file__button">画像を選択する</label>
+                        </div>
+                        <div class="form__error">
+                            @error('avatar_path')
+                                {{ $message }}
+                            @enderror
+                        </div>
                     </div>
                 </div>
             </div>
@@ -88,7 +90,6 @@
                 <div class="form__input--text">
                 <input type="text" name="building" value="{{ old('building', $profile->building ?? '') }}" />
                 </div>
-            </div>
             </div>
         </div>
         <div class="form__button">

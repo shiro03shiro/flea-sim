@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<div class="item-form__content">
+<div class="form-container item-form__content">
     <div class="item-form__heading">
         <h2>商品の出品</h2>
     </div>
