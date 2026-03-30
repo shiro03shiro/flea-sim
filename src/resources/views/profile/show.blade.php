@@ -14,7 +14,7 @@
             <img src="{{ asset('images/default-avatar.png') }}" alt="プロフィール画像" class="profile-avatar" />
         @endif
         <h2>{{ $user->name }}</h2>
-        <a href="{{ route('profile.edit') }}" class="edit__button">プロフィール編集</a>
+        <a href="{{ route('profile.edit') }}" class="edit__button">プロフィールを編集</a>
     </div>
     <div class="tabs">
         <a href="{{ route('profile.show', ['page' => 'sell']) }}" class="tab {{ $page !== 'buy' ? 'tab--active' : '' }}">出品した商品</a>
