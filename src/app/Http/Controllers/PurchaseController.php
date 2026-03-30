@@ -52,6 +52,7 @@ class PurchaseController extends Controller
     {
         $item = Item::findOrFail($item_id);
         $profile = auth()->user()->profile;
+        
         return view('purchases.edit', compact('item', 'profile'));
     }
 
