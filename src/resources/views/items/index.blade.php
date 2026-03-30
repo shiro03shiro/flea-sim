@@ -38,7 +38,7 @@
                 </a>
             </div>
         @empty
-            <p class="items-index__empty">
+            <p class="empty-state">
                 @if($tab === 'mylist' && !auth()->check())
                     マイリストを見るには<a href="{{ route('login') }}">ログイン</a>が必要です
                 @elseif($tab === 'mylist')
