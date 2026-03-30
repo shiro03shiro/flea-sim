@@ -27,6 +27,30 @@
     appearance: none;
 }
 
+.form__input--file {
+    margin-bottom: 12px;
+}
+
+.file__button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #f3f4f6;
+    color: #374151;
+    border: 2px dashed #d1d5db;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.file__button:hover {
+    background: #e5e7eb;
+    border-color: #9ca3af;
+}
+
+.form__group-image {
+    text-align: center;
+}
+
 .form__button {
     margin-top: 32px;
 }

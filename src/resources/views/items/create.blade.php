@@ -17,9 +17,6 @@
                 <span class="form__label--item">商品画像</span>
             </div>
             <div class="form__group-content item__image-area">
-                <div class="item__image-preview">
-                    <img id="preview" src="{{ asset('images/no-image.png') }}" alt="商品画像">
-                </div>
                 <div class="form__input--file">
                     <input type="file" id="image_path" name="image_path" accept="image/*" onchange="previewImage(event)">
                     <label for="image_path" class="file__button">画像を選択する</label>

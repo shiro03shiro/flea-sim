@@ -3,6 +3,12 @@
     padding: 30px 15px;
 }
 
+.item-form__heading {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: x-large;
+}
+
 .category__button-list {
     display: flex;
     flex-wrap: wrap;

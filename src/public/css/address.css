@@ -1,0 +1,10 @@
+.address-form__content {
+    margin: 0 auto;
+    padding: 30px 15px;
+}
+
+.address-form__heading {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: x-large;
+}
