@@ -35,13 +35,13 @@ class ItemController extends Controller
                 $q->where('user_id', auth()->id());
             })
             ->latest()
-            ->paginate(30)
+            ->paginate(20)
             ->appends(request()->query());
         } else {
             if (auth()->check()) {
                 $query->where('user_id', '!=', auth()->id());
             }
-            $items = $query->latest()->paginate(30)->appends(request()->query());
+            $items = $query->latest()->paginate(20)->appends(request()->query());
         }
 
         return view('items.index', compact('items', 'tab', 'keyword'));
