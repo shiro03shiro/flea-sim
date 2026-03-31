@@ -24,9 +24,10 @@
                                 <img src="{{ asset('images/default-avatar.png') }}" alt="プロフィール画像" class="profile-avatar"/>
                             @endif
                         </div>
-                        <div class="form__input--file">
+                        <div class="form__input--file js-file-input">
                             <input type="file" id="avatar_path" name="avatar_path" accept="image/*" onchange="previewImage(event)">
                             <label for="avatar_path" class="file__button">画像を選択する</label>
+                            <span class="file__status"></span>
                         </div>
                         <div class="form__error">
                             @error('avatar_path')
@@ -102,4 +103,16 @@
         </div>
     </form>
 </div>
+
+<script>
+    document.querySelectorAll('.js-file-input input').forEach(input => {
+        input.addEventListener('change', function () {
+            const wrapper = this.closest('.js-file-input');
+            wrapper.classList.add('is-selected');
+
+            const status = wrapper.querySelector('.file__status');
+            status.textContent = "✔ 画像が選択されました";
+        });
+    });
+</script>
 @endsection

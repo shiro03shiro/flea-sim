@@ -17,9 +17,10 @@
                 <span class="form__label--item">商品画像</span>
             </div>
             <div class="form__group-content item__image-area">
-                <div class="form__input--file">
+                <div class="form__input--file js-file-input">
                     <input type="file" id="image_path" name="image_path" accept="image/*" onchange="previewImage(event)">
                     <label for="image_path" class="file__button">画像を選択する</label>
+                    <span class="file__status"></span>
                 </div>
                 <div class="form__error">
                     @error('image_path')
@@ -139,11 +140,14 @@
 </div>
 
 <script>
-document.getElementById('image_path').addEventListener('change', function() {
-    this.closest('.form__input--file').classList.toggle(
-        'is-selected',
-        this.files.length > 0
-    );
-});
+    document.querySelectorAll('.js-file-input input').forEach(input => {
+        input.addEventListener('change', function () {
+            const wrapper = this.closest('.js-file-input');
+            wrapper.classList.add('is-selected');
+
+            const status = wrapper.querySelector('.file__status');
+            status.textContent = "✔ 画像が選択されました";
+        });
+    });
 </script>
 @endsection
