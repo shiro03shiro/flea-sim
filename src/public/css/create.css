@@ -41,7 +41,7 @@
 }
 
 .category__button {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 3px 16px;
@@ -52,6 +52,7 @@
     transition: all 0.2s ease;
     font-size: 14px;
     white-space: nowrap;
+    position: relative;
 }
 
 .category__button:hover {
@@ -62,9 +63,13 @@
 
 .category__button input[type="checkbox"] {
     position: absolute;
+    inset: 0;
     opacity: 0;
+    cursor: pointer;
 }
 
-.category__button input[type="checkbox"]:checked+span {
-    font-weight: 600;
+.category__button:has(input:checked) {
+    background: #ff5655;
+    border-color: #ff5655;
+    color: white;
 }
