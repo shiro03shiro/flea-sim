@@ -13,7 +13,7 @@ class ItemCreateTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_商品出品が正常に保存される()
+    public function test_商品出品画面にて必要な情報が保存できること()
     {
         $user = User::factory()->create();
 
