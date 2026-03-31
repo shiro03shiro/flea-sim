@@ -121,7 +121,6 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--price">
-                    <span class="price__mark">¥</span>
                     <input type="text" name="price" value="{{ old('price') }}">
                 </div>
                 <div class="form__error">
