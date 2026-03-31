@@ -47,7 +47,7 @@ class FortifyServiceProvider extends ServiceProvider
                 return $user;
             }
             throw ValidationException::withMessages([
-                'email' => 'ログイン情報が登録されていません。'
+                'email' => 'ログイン情報が登録されていません'
             ]);
         });
     }
