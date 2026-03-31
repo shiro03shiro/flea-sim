@@ -137,4 +137,13 @@
         </div>
     </form>
 </div>
+
+<script>
+document.getElementById('image_path').addEventListener('change', function() {
+    this.closest('.form__input--file').classList.toggle(
+        'is-selected',
+        this.files.length > 0
+    );
+});
+</script>
 @endsection

@@ -56,9 +56,9 @@
 }
 
 .category__button:hover {
-    background: #ff5655;
+    background: #f3f4f6;
     border-color: #ff5655;
-    color: white;
+    color: #ff5655;
 }
 
 .category__button input[type="checkbox"] {

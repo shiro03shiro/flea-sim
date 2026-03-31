@@ -34,10 +34,20 @@
 
 .form__input--file {
     margin-bottom: 12px;
+    position: relative;
 }
 
 .form__input--file input[type="file"] {
     display: none;
+}
+
+.form__input--file.is-selected::after {
+    content: "✔ 画像が選択されました";
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
+    font-size: 13px;
+    color: #5f5f5f;
 }
 
 .file__button {
