@@ -12,7 +12,15 @@
         {{-- 商品概要 --}}
         <div class="purchase__item-summary">
             <div class="purchase__item-image-wrapper">
-                <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}" class="purchase__item-image">
+                @if($item->image_path)
+                    @if(Str::startsWith($item->image_path, ['http://', 'https://']))
+                        <img src="{{ $item->image_path }}" alt="{{ $item->name }}" class="purchase__item-image">
+                    @else
+                        <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}" class="purchase__item-image">
+                    @endif
+                @else
+                    <img src="{{ asset('images/default-item.png') }}" alt="画像なし" class="purchase__item-image">
+                @endif
             </div>
             <div class="purchase__item-info">
                 <h2 class="purchase__item-name">{{ $item->name }}</h2>
