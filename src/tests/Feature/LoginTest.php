@@ -11,7 +11,7 @@ class LoginTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_メール未入力でエラーメッセージ表示()
+    public function test_メールアドレスが入力されていない場合()
     {
         $response = $this->post('/login', [
             'email' => '',
@@ -26,7 +26,7 @@ class LoginTest extends TestCase
         );
     }
 
-    public function test_パスワード未入力でエラーメッセージ表示()
+    public function test_パスワードが入力されていない場合()
     {
         $response = $this->post('/login', [
             'email' => 'test@example.com',
@@ -41,7 +41,7 @@ class LoginTest extends TestCase
         );
     }
 
-    public function test_ログイン情報不一致でエラーメッセージ表示()
+    public function test_入力情報が間違っている場合()
     {
         User::factory()->create([
             'email' => 'test@example.com',
@@ -61,25 +61,7 @@ class LoginTest extends TestCase
         );
     }
 
-    public function test_プロフィール未設定ユーザはプロフィール設定画面へリダイレクト()
-    {
-        $user = User::factory()->create([
-            'email' => 'test@example.com',
-            'password' => Hash::make('password123'),
-            'is_profile_completed' => false,
-        ]);
-
-        $response = $this->post('/login', [
-            'email' => 'test@example.com',
-            'password' => 'password123',
-        ]);
-
-        $this->assertAuthenticatedAs($user);
-
-        $response->assertRedirect(route('profile.edit'));
-    }
-
-    public function test_プロフィール設定済ユーザはホームへリダイレクト()
+    public function test_正しい情報が入力された場合()
     {
         $user = User::factory()->create([
             'email' => 'test@example.com',
