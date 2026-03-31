@@ -11,6 +11,10 @@
     font-size: large;
 }
 
+.form__label--item {
+    font-weight: bold;
+}
+
 .form__error {
     min-height: 20px;
     line-height: 20px;

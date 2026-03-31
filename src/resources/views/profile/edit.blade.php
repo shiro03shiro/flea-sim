@@ -91,6 +91,11 @@
                 <input type="text" name="building" value="{{ old('building', $profile->building ?? '') }}" />
                 </div>
             </div>
+            <div class="form__error">
+                @error('building')
+                {{ $message }}
+                @enderror
+                </div>
         </div>
         <div class="form__button">
             <button class="form__button-submit" type="submit">更新する</button>

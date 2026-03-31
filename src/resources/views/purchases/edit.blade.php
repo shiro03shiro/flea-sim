@@ -51,6 +51,11 @@
                 <div class="form__input--text">
                 <input type="text" name="building" value="{{ old('building', $profile->building ?? '') }}" />
                 </div>
+                <div class="form__error">
+                @error('building')
+                {{ $message }}
+                @enderror
+                </div>
             </div>
         </div>
         <input type="hidden" name="redirect_to" value="{{ request()->get('redirect_to', '') }}">
