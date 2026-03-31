@@ -4,7 +4,7 @@
 
 .profile-form__heading {
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom:30px;
     font-size: x-large;
 }
 
@@ -38,8 +38,15 @@
     width: 100%;
 }
 
+.profile__image-area .form__group-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 40px;
+}
+
 .profile__image-preview {
-    margin-bottom: 16px;
+    margin-bottom: 30px;
 }
 
 .edit__button {
