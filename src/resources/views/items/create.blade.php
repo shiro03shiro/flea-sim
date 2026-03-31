@@ -58,7 +58,7 @@
             <div class="form__group-content">
                 <div class="form__input--select">
                     <select name="condition">
-                        <option value="">選択してください</option>
+                        <option value="" disabled {{ old('condition') ? '' : 'selected' }} hidden>選択してください</option>
                         <option value="1" {{ old('condition') == 1 ? 'selected' : '' }}>良好</option>
                         <option value="2" {{ old('condition') == 2 ? 'selected' : '' }}>目立った傷や汚れなし</option>
                         <option value="3" {{ old('condition') == 3 ? 'selected' : '' }}>やや傷や汚れあり</option>
