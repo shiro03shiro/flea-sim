@@ -49,6 +49,14 @@
     gap: 30px;
 }
 
+.item-card {
+    transition: all 0.3s ease;
+}
+
+.item-card:hover {
+    transform: translateY(-3px);
+}
+
 .item-card__link {
     text-decoration: none;
     color: inherit;
