@@ -33,7 +33,7 @@ php artisan db:seed
 php artisan storage:link
 ```
 
-6. 権限設定
+6. 権限設定およびログファイル作成（必要な場合）
 
 ```bash
 chmod -R 775 storage bootstrap/cache
