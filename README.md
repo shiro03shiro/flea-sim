@@ -67,6 +67,19 @@ chown www-data:www-data storage/logs/laravel.log
 | user2  | user2@example.com | password   | ダミー商品出品済み                 |
 | user3  | user3@example.com | password   | いいね・コメント・購入済み         |
 
+## 単体テスト
+
+| ID  | 項目             | テストファイル名 | 実行コマンド                                        |
+| --- | ---------------- | ---------------- | --------------------------------------------------- |
+| 2   | ログイン機能     | LoginTest        | vendor/bin/phpunit tests/Feature/LoginTest.php      |
+| 15  | 出品商品情報登録 | ItemCreateTest   | vendor/bin/phpunit tests/Feature/ItemCreateTest.php |
+
+- 全テスト実行コマンド
+
+```bash
+php artisan test
+```
+
 ## その他
 
 - 要件ID[FN012]<br>
