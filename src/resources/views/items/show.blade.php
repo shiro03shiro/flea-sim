@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="item-detail">
-    {{-- 商品メイン画像 --}}
+
     <div class="item-detail__image-wrapper">
         @if($item->image_path)
             @if(Str::startsWith($item->image_path, ['http://', 'https://']))
@@ -21,40 +21,47 @@
     </div>
 
     <div class="item-detail__content">
-        {{-- 商品情報ヘッダー --}}
+
         <div class="item-detail__header">
             <h1 class="item-detail__name">{{ $item->name }}</h1>
             <p class="item-detail__brand">{{ $item->brand_name ?? 'ブランド名なし' }}</p>
             <p class="item-detail__price">{{ number_format($item->price) }}(税込)</p>
         </div>
+        
         <div class="item-detail__meta-icons">
             <div class="item-detail__like">
-                @if($item->user_id !== auth()->id())
-                    @if(auth()->check() && $item->isLikedByAuthUser())
-                        <form action="{{ route('items.unlike', $item->id) }}" method="POST">
-                            @csrf @method('DELETE')
-                            <button type="submit" class="like-button">
-                                <img src="{{ asset('images/' . rawurlencode('ハートロゴ_ピンク.png')) }}">
-                            </button>
-                        </form>
+
+                <div class="like-icon">
+                    @if($item->user_id !== auth()->id())
+                        @if(auth()->check() && $item->isLikedByAuthUser())
+                            <form action="{{ route('items.unlike', $item->id) }}" method="POST">
+                                @csrf @method('DELETE')
+                                <button type="submit" class="like-button">
+                                    <img src="{{ asset('images/' . rawurlencode('ハートロゴ_ピンク.png')) }}">
+                                </button>
+                            </form>
+                        @else
+                            <form action="{{ route('items.like', $item->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="like-button">
+                                    <img src="{{ asset('images/' . rawurlencode('ハートロゴ_デフォルト.png')) }}">
+                                </button>
+                            </form>
+                        @endif
                     @else
-                        <form action="{{ route('items.like', $item->id) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="like-button">
-                                <img src="{{ asset('images/' . rawurlencode('ハートロゴ_デフォルト.png')) }}">
-                            </button>
-                        </form>
+                        <img src="{{ asset('images/' . rawurlencode('ハートロゴ_デフォルト.png')) }}" class="like-icon--disabled">
                     @endif
-                    <span class="like-count">{{ $item->likes->count() }}</span>
-                @else
-                    <div class="like-owner">
-                        <img src="{{ asset('images/' . rawurlencode('ハートロゴ_デフォルト.png')) }}" 
-                            class="like-icon--disabled">
-                        <span class="owner-message">あなたの出品商品です</span>
-                        <span class="like-count">{{ $item->likes->count() }}</span>
-                    </div>
-                @endif
+                </div>
+
+                <span class="like-count">{{ $item->likes->count() }}</span>
+
+                <span class="like-message">
+                    @if($item->user_id === auth()->id())
+                        あなたの出品商品です
+                    @endif
+                </span>
             </div>
+
             <div class="item-detail__comment">
                 <img src="{{ asset('images/' . rawurlencode('ふきだしロゴ.png')) }}" alt="コメント">
                 <span class="comment-count">{{ $item->comments->count() }}</span>

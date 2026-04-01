@@ -136,6 +136,7 @@
     border: 1px solid #ddd;
     border-radius: 3px;
     resize: vertical;
+    font-family: inherit;
 }
 
 .form__input--price {
