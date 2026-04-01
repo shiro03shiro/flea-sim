@@ -74,8 +74,8 @@
                 </div>
             </div>
 
-            <div class="form__button">
-                <button class="button button--danger button--large" type="submit" form="purchase_form">購入する</button>
+            <div class="purchase__button-wrapper">
+                <button class="purchase__button button--danger button--large" type="submit" form="purchase_form">購入する</button>
             </div>
         </div>
 

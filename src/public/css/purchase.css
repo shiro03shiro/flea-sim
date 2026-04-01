@@ -100,17 +100,21 @@
     margin-bottom: 12px;
 }
 
-.form__button {
-    margin-top: 32px;
+.purchase__button-wrapper {
+    margin-top: 20px;
 }
 
-.form__button {
-    padding: 10px;
+.purchase__button {
     width: 100%;
     height: 50px;
+    padding: 10px;
     border: none;
     border-radius: 3px;
     background: #ff5555;
     color: #fff;
     cursor: pointer;
+}
+
+.purchase__button:hover {
+    opacity: 0.9;
 }
