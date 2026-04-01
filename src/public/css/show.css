@@ -288,3 +288,12 @@ textarea {
 .category__button input[type="checkbox"]:checked+span {
     font-weight: 600;
 }
+
+.button {
+    text-decoration: none;
+    color: #338fd6;
+}
+
+.button:hover {
+    text-decoration: underline;
+}
