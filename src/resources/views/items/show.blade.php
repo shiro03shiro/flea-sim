@@ -34,7 +34,7 @@
                         <form action="{{ route('items.unlike', $item->id) }}" method="POST">
                             @csrf @method('DELETE')
                             <button type="submit" class="like-button">
-                                <img src="{{ asset('images/' . rawurlencode('ハートロゴ_ピンク.png')) }}>
+                                <img src="{{ asset('images/' . rawurlencode('ハートロゴ_ピンク.png')) }}">
                             </button>
                         </form>
                     @else
@@ -56,7 +56,7 @@
                 @endif
             </div>
             <div class="item-detail__comment">
-                <img src="{{ asset('images/' . rawurlencode('ふきだしロゴ.png')) }}">
+                <img src="{{ asset('images/' . rawurlencode('ふきだしロゴ.png')) }}" alt="コメント">
                 <span class="comment-count">{{ $item->comments->count() }}</span>
             </div>
         </div>
@@ -103,26 +103,22 @@
                     <div class="comments-list">
                         @foreach($item->comments->take(10)->reverse() as $comment)
                             <div class="comment-item">
-                                <div class="comment-avatar">
-                                    @if($comment->user->profile?->avatar_path)
-                                        <img src="{{ asset('storage/' . $comment->user->profile->avatar_path) }}" 
-                                            alt="{{ $comment->user->name ?? 'ユーザー' }}" 
-                                            class="avatar">
-                                    @else
-                                        <div class="avatar-default">
-                                            {{ mb_substr($comment->user->name ?? '名無し', 0, 1) }}
-                                        </div>
-                                    @endif
-                                </div>
-                                <div class="comment-content">
-                                    <div class="comment-header">
-                                        <span class="comment-author">{{ $comment->user->name ?? '名無し' }}</span>
-                                        <span class="comment-date">
-                                            {{ $comment->created_at->format('Y/m/d H:i') }}
-                                        </span>
+                                <div class="comment-header">
+                                    <div class="comment-avatar">
+                                        @if($comment->user->profile?->avatar_path)
+                                            <img src="{{ asset('storage/' . $comment->user->profile->avatar_path) }}" 
+                                                alt="{{ $comment->user->name ?? 'ユーザー' }}" 
+                                                class="avatar">
+                                        @else
+                                            <div class="avatar-default">
+                                                {{ mb_substr($comment->user->name ?? '名無し', 0, 1) }}
+                                            </div>
+                                        @endif
                                     </div>
-                                    <p class="comment-text">{{ $comment->content }}</p>
+
+                                    <span class="comment-author">{{ $comment->user->name ?? '名無し' }}</span>
                                 </div>
+                                <p class="comment-text">{{ $comment->content }}</p>
                             </div>
                         @endforeach
                     </div>
