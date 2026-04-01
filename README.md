@@ -69,9 +69,12 @@ chown www-data:www-data storage/logs/laravel.log
 
 
 ## その他
-- 要件ID[FN012] メール認証（応用機能）は未実装のためテーブル仕様書及びER図には記載なし。<br>
-→　ただしマイグレーションファイル「email_verified_at」カラムはデフォルトのまま残しています。<br>
-- 要件ID[FN006] プロフィール未設定ユーザ判別のためusersテーブルに「is_profile_completed」カラム追加。<br>
-→　直接usersテーブルに追記せず、「add_is_profile_completed_to_users_table」でカラムを追加しています。<br>
-- 要件ID[FN024]「テーブル内では各アイテムに送付先住所が紐づいている」<br>
-→　purchasesテーブル内の外部キーで紐づいていると判断しました。<br>
+- 要件ID[FN012]<br>
+メール認証（応用機能）は未実装のためテーブル仕様書及びER図には記載なし。<br>
+ただしマイグレーションファイル「email_verified_at」カラムはデフォルトのまま残しています。<br>
+- 要件ID[FN006]<br>
+プロフィール未設定ユーザ判別のためusersテーブルに「is_profile_completed」カラム追加。<br>
+直接usersテーブルに追記せず、「add_is_profile_completed_to_users_table」でカラムを追加しています。<br>
+- 要件ID[FN024]<br>
+「テーブル内では各アイテムに送付先住所が紐づいている」<br>
+purchasesテーブル内の外部キーで紐づいていると判断しました。<br>
