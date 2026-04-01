@@ -70,20 +70,26 @@ class ItemController extends Controller
     public function like($item_id)
     {
         $item = Item::findOrFail($item_id);
+
         if ($item->user_id === auth()->id()) {
-            return back()->with('error', '自分の出品商品にはいいねできません');
+            return back();
         }
+
         $item->likes()->attach(auth()->id());
+
         return back();
     }
 
     public function unlike($item_id)
     {
         $item = Item::findOrFail($item_id);
+
         if ($item->user_id === auth()->id()) {
             return back();
         }
+
         $item->likes()->detach(auth()->id());
+
         return back();
     }
 
@@ -97,6 +103,7 @@ class ItemController extends Controller
     public function store(ExhibitionRequest $request)
     {
         $path = null;
+        
         if ($request->hasFile('image_path') && $request->file('image_path')->isValid()) {
             $path = $request->file('image_path')->store('items', 'public');
         }

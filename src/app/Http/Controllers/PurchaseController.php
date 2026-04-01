@@ -16,11 +16,11 @@ class PurchaseController extends Controller
         $item = Item::findOrFail($item_id);
 
         if ($item->sold_flg) {
-            return redirect()->back()->with('error', '売り切れ商品です');
+            return redirect()->back();
         }
 
         if ($item->user_id === Auth::id()) {
-            return redirect()->back()->with('error', '自分の出品商品は購入できません');
+            return redirect()->back();
         }
 
         return view('purchases.create', compact('item'));
@@ -31,7 +31,7 @@ class PurchaseController extends Controller
         $item = Item::findOrFail($item_id);
 
         if ($item->sold_flg || $item->user_id === Auth::id()) {
-            return redirect()->back()->with('error', '購入できない商品です');
+            return redirect()->back();
         }
 
         $paymentMethod = (int) $request->input('payment_method', 1);
@@ -44,7 +44,7 @@ class PurchaseController extends Controller
 
         $item->update(['sold_flg' => true]);
 
-        return redirect()->route('home')->with('success', '購入が完了しました！');
+        return redirect()->route('home');
     }
 
     public function edit($item_id)
@@ -63,6 +63,6 @@ class PurchaseController extends Controller
         $user->profile()->updateOrCreate(['user_id' => $user->id], $profileData);
 
         $redirectTo = $request->input('redirect_to') ?: route('purchases.create', $item_id);
-        return redirect($redirectTo)->with('success', '住所を更新しました');
+        return redirect($redirectTo);
     }
 }

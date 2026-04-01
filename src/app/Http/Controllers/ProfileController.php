@@ -57,6 +57,6 @@ class ProfileController extends Controller
 
         $redirectTo = $isFirst ? route('home') : route('profile.show');
 
-        return redirect()->to($redirectTo)->with('success', 'プロフィールが更新されました');
+        return redirect()->to($redirectTo);
     }
 }
