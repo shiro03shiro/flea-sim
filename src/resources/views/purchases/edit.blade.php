@@ -10,9 +10,11 @@
     <div class="address-form__heading">
         <h2>住所の変更</h2>
     </div>
+
     <form class="form" action="{{ route('purchases.update', $item->id) }}" method="post">
         @method('PATCH')
         @csrf
+
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">郵便番号</span>
@@ -28,6 +30,7 @@
                 </div>
             </div>
         </div>
+
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">住所</span>
@@ -43,6 +46,7 @@
                 </div>
             </div>
         </div>
+
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">建物名</span>
@@ -59,6 +63,7 @@
             </div>
         </div>
         <input type="hidden" name="redirect_to" value="{{ request()->get('redirect_to', '') }}">
+
         <div class="form__button">
             <button class="form__button-submit" type="submit">更新する</button>
         </div>
