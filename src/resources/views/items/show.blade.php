@@ -30,17 +30,17 @@
             <div class="item-detail__like">
                 @if($item->user_id !== auth()->id())
                     @if(auth()->check() && $item->isLikedByAuthUser())
-                        <form action="{{ route('items.unlike', $item->id) }}" method="POST" style="display: inline;">
+                        <form action="{{ route('items.unlike', $item->id) }}" method="POST">
                             @csrf @method('DELETE')
-                            <button type="submit" class="like-btn">
-                                <img src="{{ asset('images/' . rawurlencode('ハートロゴ_ピンク.png')) }}" width="30" height="30">
+                            <button type="submit" class="like-button">
+                                <img src="{{ asset('images/' . rawurlencode('ハートロゴ_ピンク.png')) }}>
                             </button>
                         </form>
                     @else
-                        <form action="{{ route('items.like', $item->id) }}" method="POST" style="display: inline;">
+                        <form action="{{ route('items.like', $item->id) }}" method="POST">
                             @csrf
-                            <button type="submit" class="like-btn">
-                                <img src="{{ asset('images/' . rawurlencode('ハートロゴ_デフォルト.png')) }}" width="30" height="30">
+                            <button type="submit" class="like-button">
+                                <img src="{{ asset('images/' . rawurlencode('ハートロゴ_デフォルト.png')) }}">
                             </button>
                         </form>
                     @endif
@@ -48,25 +48,25 @@
                 @else
                     <div class="like-owner">
                         <img src="{{ asset('images/' . rawurlencode('ハートロゴ_デフォルト.png')) }}" 
-                            class="like-icon--disabled" width="30" height="30">
+                            class="like-icon--disabled">
                         <span class="owner-message">あなたの出品商品です</span>
                         <span class="like-count">{{ $item->likes->count() }}</span>
                     </div>
                 @endif
             </div>
             <div class="item-detail__comment">
-                <img src="{{ asset('images/' . rawurlencode('ふきだしロゴ.png')) }}" width="30" height="30">
+                <img src="{{ asset('images/' . rawurlencode('ふきだしロゴ.png')) }}">
                 <span class="comment-count">{{ $item->comments->count() }}</span>
             </div>
         </div>
         {{-- 購入ボタン --}}
         <div class="item-detail__action">
             @if($item->sold_flg)
-                <span class="btn btn--disabled btn--large">売り切れました</span>
+                <span class="button button--disabled button--large">売り切れました</span>
             @elseif($item->user_id === auth()->id())
-                <span class="btn btn--disabled btn--large">あなたの出品商品です</span>
+                <span class="button button--disabled button--large">あなたの出品商品です</span>
             @else
-                <a href="{{ route('purchases.create', $item->id) }}" class="btn btn--danger btn--large">
+                <a href="{{ route('purchases.create', $item->id) }}" class="button button--danger button--large">
                     購入手続きへ
                 </a>
             @endif

@@ -4,7 +4,7 @@
     max-width: 1230px;
 }
 
-.btn--disabled {
+.button--disabled {
     pointer-events: none;
     opacity: 0.6;
     cursor: not-allowed;
@@ -12,19 +12,24 @@
     color: #666;
 }
 
+.item-detail__icon {
+    width: 30px;
+    height: 30px;
+}
+
 .item-detail__like {
     margin: 10px 0;
     text-align: center;
 }
 
-.like-btn {
+.like-button {
     border: none;
     background: none;
     cursor: pointer;
     padding: 8px;
 }
 
-.like-btn:hover img {
+.like-button:hover img {
     opacity: 0.7;
     transform: scale(1.1);
 }
