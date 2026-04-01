@@ -76,6 +76,10 @@
     margin-top: 32px;
 }
 
+.form__button:hover {
+    opacity: 0.9;
+}
+
 .form__button-submit {
     padding: 10px;
     width: 100%;
