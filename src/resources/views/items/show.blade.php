@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
+<link rel="stylesheet" href="{{ asset('css/form.css') }}">
 <link rel="stylesheet" href="{{ asset('css/show.css') }}">
 @endsection
 
@@ -128,17 +129,29 @@
                 @else
                     <p>まだコメントはありません。</p>
                 @endif
-                <form action="{{ route('items.comment', $item->id) }}" method="POST" class="item-comment-form">
+                <form action="{{ route('items.comment', $item->id) }}" method="POST" class="form item-comment-form">
                     @csrf
+
                     <div class="form__group">
-                        <label for="content">商品へのコメント</label>
-                        <textarea name="content" id="content" rows="3">{{ old('content') }}</textarea>
-                        @error('content')
-                            <div class="form__error">{{ $message }}</div>
-                        @enderror
+                        <div class="form__group-title">
+                            <span class="form__label--item">商品へのコメント</span>
+                        </div>
+
+                        <div class="form__group-content">
+                            <div class="form__input--textarea">
+                                <textarea name="content" id="content" rows="4">{{ old('content') }}</textarea>
+                            </div>
+
+                            @error('content')
+                                <div class="form__error">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
+
                     <div class="form__button">
-                        <button class="form__button-submit" type="submit">コメントを送信する</button>
+                        <button class="form__button-submit" type="submit">
+                            コメントを送信する
+                        </button>
                     </div>
                 </form>
             </div>    

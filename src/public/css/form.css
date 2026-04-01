@@ -81,9 +81,11 @@
 }
 
 .form__button-submit {
-    padding: 10px;
     width: 100%;
+    padding: 10px;
     height: 50px;
+    font-size: 20px;
+    font-weight: bold;
     border: none;
     border-radius: 3px;
     background: #ff5555;
