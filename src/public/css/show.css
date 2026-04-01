@@ -155,10 +155,28 @@
 .item-detail__meta-item dt {
     width: 120px;
     font-weight: bold;
+    flex-shrink: 0;
 }
 
 .item-detail__meta-item dd {
     margin: 0;
+    flex: 1;
+}
+
+.item-detail__categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.category-tag {
+    display: inline-block;
+    padding: 6px 6px;
+    font-size: 12px;
+    background: #d9d9d9;
+    border-radius: 20px;
+    color: #333;
+    line-height: 1;
 }
 
 .comments-section {

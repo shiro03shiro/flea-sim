@@ -85,7 +85,13 @@
             <dl class="item-detail__meta-list">
                 <div class="item-detail__meta-item">
                     <dt>カテゴリー</dt>
-                    <dd>{{ $item->categories->pluck('name')->join(', ') ?? '未分類' }}</dd>
+                    <dd class="item-detail__categories">
+                        @forelse($item->categories as $category)
+                            <span class="category-tag">{{ $category->name }}</span>
+                        @empty
+                            <span>未分類</span>
+                        @endforelse
+                    </dd>
                 </div>
                 <div class="item-detail__meta-item">
                     <dt>商品の状態</dt>
