@@ -25,7 +25,7 @@
         <div class="item-detail__header">
             <h1 class="item-detail__name">{{ $item->name }}</h1>
             <p class="item-detail__brand">{{ $item->brand_name ?? 'ブランド名なし' }}</p>
-            <p class="item-detail__price">¥{{ number_format($item->price) }}(税込)</p>
+            <p class="item-detail__price">{{ number_format($item->price) }}(税込)</p>
         </div>
         <div class="item-detail__meta-icons">
             <div class="item-detail__like">

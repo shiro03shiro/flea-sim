@@ -37,9 +37,19 @@
 }
 
 .item-detail__price {
+    position: relative;
     font-size: 22px;
-    font-weight: bold;
+    padding-left: 16px;
     margin-bottom: 16px;
+}
+
+.item-detail__price::before {
+    content: '￥';
+    position: absolute;
+    font-size: 16px;
+    left: 0px;
+    top: 55%;
+    transform: translateY(-50%);
 }
 
 .item-detail__meta-icons {
