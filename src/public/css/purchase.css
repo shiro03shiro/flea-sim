@@ -1,5 +1,5 @@
 .purchase {
-    padding: 40px 0;
+    padding: 80px 0;
 }
 
 .purchase__inner {
@@ -7,11 +7,11 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    gap: 40px;
+    gap: 80px;
 }
 
 .purchase__left {
-    width: 70%;
+    width: 65%;
 }
 
 .purchase__item {
@@ -39,7 +39,7 @@
 }
 
 .purchase__item-price {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .purchase__form {
@@ -75,6 +75,7 @@
 .purchase__address {
     width: 50%;
     font-size: 16px;
+    font-weight: bold;
 }
 
 .button {
@@ -92,15 +93,14 @@
 
 .purchase__summary {
     border: 1px solid #000;
-    padding: 16px 40px;
-    margin-bottom: 20px;
+    margin-bottom: 48px;
 }
 
 .purchase__summary-row {
     display: flex;
     justify-content: space-between;
     font-size: 18px;
-    padding: 12px 0;
+    padding: 40px 40px;
     border-bottom: 1px solid #000;
 }
 
@@ -108,13 +108,12 @@
     border-bottom: none;
 }
 
-
-
-
 .purchase__button {
     width: 100%;
     height: 50px;
     padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
     border: none;
     border-radius: 3px;
     background: #ff5555;
