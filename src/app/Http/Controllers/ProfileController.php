@@ -11,6 +11,7 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
         $profile = $user->profile;
+        
         $page = $request->get('page', 'sell');
 
         if ($page === 'buy') {
@@ -20,14 +21,18 @@ class ProfileController extends Controller
             $soldItems = $user->items()->with('categories')->latest()->get();
             $purchasedItems = collect();
         }
+
         return view('profile.show', compact('user', 'profile', 'soldItems', 'purchasedItems', 'page'));
     }
+
     public function edit()
     {
         $user = auth()->user();
         $profile = $user->profile;
+
         return view('profile.edit', compact('user', 'profile'));
     }
+    
     public function update(ProfileRequest $request)
     {
         $user = auth()->user();
