@@ -48,7 +48,6 @@
                 <p class="empty-state">購入履歴がありません</p>
             @endforelse
         </div>
-        
     @else
         <div class="items-grid">
             @forelse($soldItems as $item)

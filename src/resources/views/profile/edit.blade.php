@@ -10,15 +10,17 @@
     <div class="profile-form__heading">
         <h2>プロフィール設定</h2>
     </div>
+
     <form class="form" action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
+
         <div class="form__group">
             <div class="form__group-image">
                 <div class="profile__image-area">
                     <div class="form__group-content">
                         <div class="profile__image-preview">
-                            @if(@isset($profile) && !@empty($profile->avatar_path))
+                            @if(@isset($profile) && !empty($profile->avatar_path))
                                 <img src="{{ asset('storage/' . $profile->avatar_path) }}" alt="プロフィール画像" class="profile-avatar"/>
                             @else
                                 <img src="{{ asset('images/default-avatar.png') }}" alt="プロフィール画像" class="profile-avatar"/>
@@ -38,6 +40,7 @@
                 </div>
             </div>
         </div>
+
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">ユーザー名</span>
@@ -53,6 +56,7 @@
                 </div>
             </div>
         </div>
+
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">郵便番号</span>
@@ -68,6 +72,7 @@
                 </div>
             </div>
         </div>
+
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">住所</span>
@@ -83,6 +88,7 @@
                 </div>
             </div>
         </div>
+
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">建物名</span>
@@ -98,6 +104,7 @@
                 @enderror
                 </div>
         </div>
+
         <div class="form__button">
             <button class="form__button-submit" type="submit">更新する</button>
         </div>
