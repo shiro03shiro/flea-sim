@@ -10,8 +10,10 @@
     <div class="item-form__heading">
         <h2>商品の出品</h2>
     </div>
+
     <form class="form" action="{{ route('items.store') }}" method="post" enctype="multipart/form-data">
         @csrf
+
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">商品画像</span>
@@ -29,6 +31,7 @@
                 </div>
             </div>
         </div>
+
         <div class="form__section">
             <h3 class="form__section-title">商品の詳細</h3>
         </div>
@@ -52,6 +55,7 @@
                 </div>
             </div>
         </div>
+
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">商品の状態</span>
@@ -73,9 +77,11 @@
                 </div>
             </div>
         </div>
+
         <div class="form__section">
             <h3 class="form__section-title">商品名と説明</h3>
         </div>
+
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">商品名</span>
@@ -91,6 +97,7 @@
                 </div>
             </div>
         </div>
+
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">ブランド名</span>
@@ -101,6 +108,7 @@
                 </div>
             </div>
         </div>
+
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">商品の説明</span>
@@ -116,6 +124,7 @@
                 </div>
             </div>
         </div>
+
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">販売価格</span>
@@ -131,6 +140,7 @@
                 </div>
             </div>
         </div>
+
         <div class="form__button">
             <button class="form__button-submit" type="submit">
                 出品する

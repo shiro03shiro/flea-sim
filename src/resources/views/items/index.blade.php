@@ -6,14 +6,11 @@
 
 @section('content')
 <div class="items-index">
-
-    {{-- タブメニュー --}}
     <div class="tabs">
         <a href="{{ route('home') }}" class="tab {{ $tab !== 'mylist' ? 'tab--active' : '' }}">おすすめ</a>
         <a href="{{ route('home', ['tab' => 'mylist']) }}" class="tab {{ $tab === 'mylist' ? 'tab--active' : '' }}">マイリスト</a>
     </div>
 
-    {{-- 商品一覧 --}}
     <div class="items-grid">
         @forelse ($items as $item)
             <div class="item-card">
@@ -51,13 +48,12 @@
             </p>
         @endforelse
     </div>
-    
+
     @if($items->lastPage() > 1)
     <div class="pagination">
         @if(!$items->onFirstPage())
             <a href="{{ $items->previousPageUrl() }}" class="pagination-link">« 前</a>
         @endif
-
         @foreach($items->getUrlRange(1, $items->lastPage()) as $page => $url)
             @if($page == $items->currentPage())
                 <span class="pagination-current">{{ $page }}</span>
