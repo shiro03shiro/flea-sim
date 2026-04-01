@@ -59,7 +59,19 @@ chown www-data:www-data storage/logs/laravel.log
 - 開発環境：http://localhost/
 - phpMyAdmin：http://localhost:8080/
 
-## その他
+## ユーザ情報
 
+| ユーザ | メール | パスワード | 状態 |
+|--------|--------|------------|------|
+| user1 | user1@example.com | password | 会員登録・プロフィール設定のみ完了 |
+| user2 | user2@example.com | password | ダミー商品出品済み |
+| user3 | user3@example.com | password | いいね・コメント・購入済み |
+
+
+## その他
+- 要件ID[FN012] メール認証（応用機能）は未実装のためテーブル仕様書及びER図には記載なし。<br>
+→　ただしマイグレーションファイル「email_verified_at」カラムはデフォルトのまま残しています。<br>
+- 要件ID[FN006] プロフィール未設定ユーザ判別のためusersテーブルに「is_profile_completed」カラム追加。<br>
+→　直接usersテーブルに追記せず、「add_is_profile_completed_to_users_table」でカラムを追加しています。<br>
 - 要件ID[FN024]「テーブル内では各アイテムに送付先住所が紐づいている」<br>
-→　purchasesテーブル内の外部キーで紐づいていると判断しました。
+→　purchasesテーブル内の外部キーで紐づいていると判断しました。<br>

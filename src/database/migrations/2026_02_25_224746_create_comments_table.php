@@ -18,7 +18,8 @@ class CreateCommentsTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('item_id');
             $table->string('content');
-            $table->timestamps();        });
+            $table->timestamps();
+        });
     }
 
     /**
